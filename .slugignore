@@ -1,0 +1,7 @@
+client
+node_modules
+.env
+.env.sample
+LICENSE
+*.txt
+*.md
