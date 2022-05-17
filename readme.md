@@ -1,1 +1,1 @@
-### UPC_JMI
+### University placement Cell - JMI
