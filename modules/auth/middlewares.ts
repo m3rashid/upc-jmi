@@ -4,32 +4,37 @@ import logger from '../utils/logger'
 import { verifyJWT } from './helpers'
 
 export const checkAuth = (req: Request, res: Response, next: NextFunction) => {
-  const token = req.headers['authorization']
-  if (!token) {
+  try {
+    const token = req.headers['authorization']
+    if (!token) throw new Error('Unauthorized')
+
+    const { valid, expired, payload } = verifyJWT(token)
+    if (!valid || expired) throw new Error('Unauthorized')
+
+    logger.info(payload?.sub)
+    req.user = JSON.parse(payload?.sub as any)
+    next()
+  } catch (err) {
+    logger.error(JSON.stringify(err))
     return res.send(401)
   }
-  const { valid, expired, payload } = verifyJWT(token)
-  if (!valid || expired) {
-    return res.send(401)
-  }
-  // sub: { id: user._id, role: user.role }
-  logger.info(payload?.sub)
-  req.user = payload?.sub
-  next()
 }
 
 export const checkAdmin = (req: Request, res: Response, next: NextFunction) => {
-  const token = req.headers['authorization']
-  if (!token) {
-    return res.send(401)
-  }
-  const { valid, expired, payload } = verifyJWT(token)
-  if (!valid || expired) {
-    return res.send(401)
-  }
-  logger.info(payload?.sub)
-  req.user = payload?.sub
+  try {
+    const token = req.headers['authorization']
+    if (!token) throw new Error('Unauthorized')
 
-  // add additional checks for admin
-  next()
+    const { valid, expired, payload } = verifyJWT(token)
+    if (!valid || expired) throw new Error('Unauthorized')
+
+    const user = JSON.parse(payload?.sub as any)
+    if (user.role !== 'ADMIN') throw new Error('Not an admin')
+    logger.info(payload?.sub)
+    req.user = JSON.parse(payload?.sub as any)
+    next()
+  } catch (err) {
+    logger.error(JSON.stringify(err))
+    return res.send(401)
+  }
 }
