@@ -73,6 +73,8 @@ const TopHeader: React.FC<IProps> = ({ colorScheme, toggleColorScheme }) => {
   const navigate = useNavigate()
 
   const Icon = colorScheme === 'dark' ? Sun : Moon
+  // const imgLogo = colorScheme === 'dark' ? '/images/white_logo-min.png' : '/images/black_logo-min.png'
+  const imgLogo = '/images/logo_green.png'
 
   const ThemeChanger = () => (
     <Group position="center" my="xl">
@@ -86,7 +88,7 @@ const TopHeader: React.FC<IProps> = ({ colorScheme, toggleColorScheme }) => {
     <Header height={HEADER_HEIGHT} className={classes.root}>
       <Container className={classes.header}>
         <div className={classes.logoContainer} onClick={() => navigate('/')}>
-          <Image className={classes.logo} src="/images/logo.png" alt="" />
+          <Image className={classes.logo} src={imgLogo} height="60px" alt="" />
         </div>
 
         <Group spacing={5} className={classes.links}>
