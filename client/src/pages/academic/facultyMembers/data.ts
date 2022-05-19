@@ -1,5 +1,7 @@
+import { IFacultyId } from '../../../components/facultyMembers/data'
+
 export interface IFaculty {
-  id: string
+  id: IFacultyId
   name: string
   department: string
   avatar: string

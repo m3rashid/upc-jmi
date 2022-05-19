@@ -63,7 +63,21 @@ const Routes = () => {
     <div className={classes.root}>
       <Container>
         <BreadCrumbs />
-        <React.Suspense fallback={<Loader color={theme.primaryColor} />}>
+        <React.Suspense
+          fallback={
+            <div
+              style={{
+                width: '100%',
+                minHeight: '100px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <Loader color={theme.primaryColor} />
+            </div>
+          }
+        >
           <Router>
             <Route path="/" element={<Home />} />
             <Route path="/placement" element={<Placement />} />

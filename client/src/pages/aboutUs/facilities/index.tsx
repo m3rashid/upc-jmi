@@ -5,14 +5,21 @@ import { useStyles } from './styles'
 import { facilityList, IShortName, IFacility } from './data'
 import { useGlobalStyles } from '../../../globals/globalStyles'
 import TwoColumnGrid from '../../../globals/twoColumnGrid'
+import { useWindowScroll } from '@mantine/hooks'
 
 interface IProps {}
 
 const Facilities: React.FC<IProps> = () => {
   const { classes } = useStyles()
   const { classes: globalClasses } = useGlobalStyles()
+  const scrollTo = useWindowScroll()[1]
   const [current, setCurrent] = React.useState<IShortName>('clab1')
   const [facilityDetail, setFacilityDetail] = React.useState<IFacility>()
+
+  const handleSelect = (id: IShortName) => {
+    setCurrent(id)
+    scrollTo({ y: 0 })
+  }
 
   React.useEffect(() => {
     facilityList.forEach((f) => {
@@ -29,14 +36,17 @@ const Facilities: React.FC<IProps> = () => {
         Facilities
       </Title>
       <TwoColumnGrid>
-        <SimpleGrid spacing="xs">
+        <SimpleGrid
+          spacing="xs"
+          className={globalClasses.twoColumnGridHeightFix}
+        >
           {facilityList.map((facility) => (
             <Card key={facility.id}>
               <Title
                 order={4}
                 className={`${classes.title} ${globalClasses.brandColor}`}
                 style={{ cursor: 'pointer' }}
-                onClick={() => setCurrent(facility.shortName)}
+                onClick={() => handleSelect(facility.shortName)}
               >
                 {facility.title}
               </Title>
@@ -44,7 +54,12 @@ const Facilities: React.FC<IProps> = () => {
           ))}
         </SimpleGrid>
 
-        <Card withBorder radius="md" p={0} className={classes.card}>
+        <Card
+          withBorder
+          radius="md"
+          p={0}
+          className={`${classes.card} ${globalClasses.twoColumnGridHeightFix}`}
+        >
           <Group noWrap spacing={0} className={classes.group}>
             <Image withPlaceholder src={facilityDetail?.imageSrc} />
             <div className={classes.body}>

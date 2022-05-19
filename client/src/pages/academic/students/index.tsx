@@ -1,15 +1,37 @@
+import { Card, Select, SimpleGrid, Title } from '@mantine/core'
 import React from 'react'
-
-import { useStyles } from './styles'
+import { useGlobalStyles } from '../../../globals/globalStyles'
+import { batchOptions, courseOptions, IBatch, ICourse } from './data'
 
 interface IProps {}
 
 const Students: React.FC<IProps> = () => {
-  const { classes } = useStyles()
+  const [batch, setBatch] = React.useState<IBatch>('2018-2022')
+  const [course, setCourse] = React.useState<ICourse>('B. Tech')
+  const { classes: globalClasses } = useGlobalStyles()
+
   return (
-    <>
-      <div>Students</div>
-    </>
+    <div className={globalClasses.themeColor}>
+      <Card style={{ marginBottom: '50px' }}>
+        <SimpleGrid cols={2}>
+          <Select
+            label="Select Course"
+            value={course}
+            onChange={setCourse as any}
+            data={courseOptions}
+          />
+          <Select
+            label="Select Batch"
+            value={batch}
+            onChange={setBatch as any}
+            data={batchOptions}
+          />
+        </SimpleGrid>
+      </Card>
+      <Title order={2} mb={10} ml={5}>
+        {`Details for ${course} ${batch} batch`}
+      </Title>
+    </div>
   )
 }
 
