@@ -15,6 +15,23 @@ export interface IDetail {
   coursesTaught: IString[]
 }
 
+export type IFacultyId =
+  | 'balam'
+  | 'ndoja'
+  | 'tanv'
+  | 'mamjad'
+  | 'sarfm'
+  | 'mumahm'
+  | 'musheerah'
+  | 'zeeans'
+  | 'faiyaah'
+  | 'danishRiz'
+  | 'jlal'
+  | 'shshza'
+  | 'shamah'
+  | 'hnnman'
+  | 'wasahm'
+
 export const facultyDetails: IDetail[] = [
   {
     id: 'balam',

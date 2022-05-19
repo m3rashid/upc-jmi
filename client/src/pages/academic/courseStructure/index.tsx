@@ -1,4 +1,4 @@
-import { Card, Group, Select, SimpleGrid, Title } from '@mantine/core'
+import { Card, Select, SimpleGrid, Title } from '@mantine/core'
 import React from 'react'
 import BtechCourseStructure, {
   ICourse,

@@ -4,11 +4,21 @@ import { Avatar, Card, Group, SimpleGrid, Text, Title } from '@mantine/core'
 import { useGlobalStyles } from '../../../globals/globalStyles'
 import TwoColumnGrid from '../../../globals/twoColumnGrid'
 import { facilityList } from './data'
+import FacultyMemberDetails from '../../../components/facultyMembers'
+import { IFacultyId } from '../../../components/facultyMembers/data'
+import { useWindowScroll } from '@mantine/hooks'
 
 interface IProps {}
 
 const FacultyMembers: React.FC<IProps> = () => {
+  const [faculty, setFaculty] = React.useState<IFacultyId>('balam')
   const { classes: globalClasses } = useGlobalStyles()
+  const scrollTo = useWindowScroll()[1]
+
+  const handleFacultyChange = (id: IFacultyId) => {
+    setFaculty(id)
+    scrollTo({ y: 0 })
+  }
 
   return (
     <>
@@ -16,7 +26,7 @@ const FacultyMembers: React.FC<IProps> = () => {
         Faculty Members
       </Title>
       <TwoColumnGrid>
-        <SimpleGrid>
+        <SimpleGrid className={globalClasses.twoColumnGridHeightFix}>
           {facilityList.map((faculty) => (
             <Card key={faculty.id}>
               <Group noWrap>
@@ -31,7 +41,12 @@ const FacultyMembers: React.FC<IProps> = () => {
                     {faculty.department}
                   </Text>
 
-                  <Text size="lg" weight={500}>
+                  <Text
+                    size="lg"
+                    weight={500}
+                    className={globalClasses.brandColor}
+                    onClick={() => handleFacultyChange(faculty.id)}
+                  >
                     {faculty.name}
                   </Text>
                 </div>
@@ -44,7 +59,7 @@ const FacultyMembers: React.FC<IProps> = () => {
             </Card>
           ))}
         </SimpleGrid>
-        <div></div>
+        <FacultyMemberDetails facultyId={faculty} />
       </TwoColumnGrid>
     </>
   )

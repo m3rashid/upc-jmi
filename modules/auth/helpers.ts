@@ -12,7 +12,7 @@ const privateKey = fs.readFileSync(
   'utf8'
 )
 const publicKey = fs.readFileSync(
-  path.join(__dirname, '.keys/public.pem'),
+  path.join(__dirname, './keys/public.pem'),
   'utf8'
 )
 

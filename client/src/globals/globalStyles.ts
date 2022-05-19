@@ -11,6 +11,10 @@ export const useGlobalStyles = createStyles((theme) => ({
     color: theme.colors.brand,
   },
 
+  twoColumnGridHeightFix: {
+    height: 'min-content',
+  },
+
   link: {
     display: 'block',
     lineHeight: 1,

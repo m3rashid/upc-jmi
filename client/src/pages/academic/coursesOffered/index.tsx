@@ -10,6 +10,7 @@ import {
   MtechCourse,
 } from '../../../components/courseDetails'
 import PhdCourse from '../../../components/courseDetails/phdCourse'
+import { useWindowScroll } from '@mantine/hooks'
 
 export const useStyles = createStyles((theme) => ({
   title: {
@@ -24,8 +25,13 @@ interface IProps {}
 const CoursesOffered: React.FC<IProps> = () => {
   const { classes } = useStyles()
   const { classes: globalClasses } = useGlobalStyles()
-
+  const scrollTo = useWindowScroll()[1]
   const [current, setCurrent] = React.useState<IShortName>('btech')
+
+  const handleCourseChange = (id: IShortName) => {
+    setCurrent(id)
+    scrollTo({ y: 0 })
+  }
 
   return (
     <>
@@ -33,13 +39,13 @@ const CoursesOffered: React.FC<IProps> = () => {
         Courses Offered
       </Title>
       <TwoColumnGrid>
-        <SimpleGrid>
+        <SimpleGrid className={globalClasses.twoColumnGridHeightFix}>
           {coursesList.map((course) => (
             <Card key={course.id}>
               <Title
                 order={4}
                 className={classes.title}
-                onClick={() => setCurrent(course.shortName)}
+                onClick={() => handleCourseChange(course.shortName)}
               >
                 {course.title}
               </Title>
@@ -47,7 +53,7 @@ const CoursesOffered: React.FC<IProps> = () => {
             </Card>
           ))}
         </SimpleGrid>
-        <div>
+        <div className={globalClasses.twoColumnGridHeightFix}>
           {current === 'btech' && <BtechCourse />}
           {current === 'be' && <BeCourse />}
           {current === 'mtech' && <MtechCourse />}
