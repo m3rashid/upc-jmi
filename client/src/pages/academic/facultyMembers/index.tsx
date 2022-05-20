@@ -28,7 +28,7 @@ const FacultyMembers: React.FC<IProps> = () => {
       <TwoColumnGrid>
         <SimpleGrid className={globalClasses.twoColumnGridHeightFix}>
           {facilityList.map((faculty) => (
-            <Card key={faculty.id}>
+            <Card style={{ cursor: 'pointer' }} key={faculty.id}>
               <Group noWrap>
                 <Avatar src={faculty.avatar} size={75} radius="md" />
                 <div>
