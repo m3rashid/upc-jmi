@@ -16,3 +16,8 @@ export const globalErrorHandler = (
         : 'Internal Server Error',
   })
 }
+
+export const safeUse =
+  (check: Function) => (req: Request, res: Response, next: NextFunction) => {
+    Promise.resolve(check(req, res, next)).catch(next)
+  }

@@ -1,9 +1,16 @@
-import { Request, Response } from 'express'
-
 import MtechStudent, { IMtechStudent } from '../models/mtech'
+import { defaultRouter } from '../../main'
 
-export const addMtechStudent = async (req: Request, res: Response) => {}
-
-export const editMtechStudent = async (req: Request, res: Response) => {}
-
-export const deleteMtechStudent = async (req: Request, res: Response) => {}
+export const router = defaultRouter<IMtechStudent>({
+  Model: MtechStudent,
+  baseUrl: '/api/students/mtech',
+  createDoc: {
+    yes: true,
+  },
+  updateDoc: {
+    yes: true,
+  },
+  deleteDoc: {
+    yes: true,
+  },
+})

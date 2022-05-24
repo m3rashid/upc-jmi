@@ -13,7 +13,7 @@ const Home: React.FC<IProps> = () => {
     <>
       <div className={classes.wrapper}>
         <Title className={classes.title}>
-          University Placement Cell
+          Department of Computer Science
           <Text component="div" inherit className={classes.highlight}>
             Jamia Millia Islamia
           </Text>
@@ -21,7 +21,8 @@ const Home: React.FC<IProps> = () => {
 
         <Container size={640}>
           <Text size="lg" className={classes.description}>
-            Some facny description of the placement cell Jamia millia islamia
+            Some facny description of the Department of Computer Science Jamia
+            millia islamia
           </Text>
         </Container>
       </div>
