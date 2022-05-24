@@ -1,20 +1,6 @@
-export {
-  addBtechStudent,
-  editBtechStudent,
-  deleteBtechStudent,
-} from './controllers/btech'
-
-export {
-  addMtechStudent,
-  editMtechStudent,
-  deleteMtechStudent,
-} from './controllers/mtech'
-
-export {
-  addPhdStudent,
-  editPhdStudent,
-  deletePhdStudent,
-} from './controllers/phd'
+export { router as btechRouter } from './controllers/btech'
+export { router as mtechRouter } from './controllers/mtech'
+export { router as phdRouter } from './controllers/phd'
 
 import BtechStudent from './models/btech'
 import MtechStudent from './models/mtech'

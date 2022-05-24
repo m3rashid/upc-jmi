@@ -16,7 +16,7 @@ export const checkAuth = (req: Request, res: Response, next: NextFunction) => {
     next()
   } catch (err) {
     logger.error(JSON.stringify(err))
-    return res.send(401)
+    return res.sendStatus(401)
   }
 }
 
@@ -35,6 +35,6 @@ export const checkAdmin = (req: Request, res: Response, next: NextFunction) => {
     next()
   } catch (err) {
     logger.error(JSON.stringify(err))
-    return res.send(401)
+    return res.sendStatus(401)
   }
 }

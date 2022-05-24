@@ -1,5 +1,3 @@
-export { createEvent, editEvent, deleteEvent } from './controllers'
-
 import Event from './model'
 export { Event }
 export { IEvent, IImage } from './model'
@@ -9,3 +7,5 @@ export {
   validateEditEvent,
   validateDeleteEvent,
 } from './validators'
+
+export { router as eventsRouter } from './router'
