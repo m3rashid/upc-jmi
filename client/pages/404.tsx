@@ -7,6 +7,7 @@ import {
   Container,
   Group,
 } from '@mantine/core'
+
 import PageWrapper from '../components/pageWrapper'
 
 export const useStyles = createStyles((theme) => ({

@@ -1,9 +1,10 @@
-import { Card, Select, SimpleGrid, Title } from '@mantine/core'
 import React from 'react'
+import { Card, Select, SimpleGrid, Title } from '@mantine/core'
+
+import PageWrapper from '../../components/pageWrapper'
 import { ICourse } from '../../data/academic/courseStructure'
 import AllCourseStructure from '../../components/courseStructure'
 import { useGlobalStyles } from '../../components/globals/globalStyles'
-import PageWrapper from '../../components/pageWrapper'
 
 interface IProps {}
 

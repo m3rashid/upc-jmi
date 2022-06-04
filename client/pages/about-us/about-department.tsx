@@ -1,9 +1,9 @@
 import React from 'react'
-import { Timeline, Text } from '@mantine/core'
 import { Sun } from 'tabler-icons-react'
+import { Timeline, Text } from '@mantine/core'
 
-import { useGlobalStyles } from '../../components/globals/globalStyles'
 import PageWrapper from '../../components/pageWrapper'
+import { useGlobalStyles } from '../../components/globals/globalStyles'
 
 interface IProps {}
 

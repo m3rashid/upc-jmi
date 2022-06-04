@@ -1,5 +1,7 @@
 import React from 'react'
 
+import BeTable from './beTable'
+import Table from './defaultTable'
 import {
   bTechSem1,
   bTechSem2,
@@ -22,8 +24,6 @@ import {
   beYear3,
   beYear4,
 } from '../../data/academic/courseStructure/be'
-import Table from './defaultTable'
-import BeTable from './beTable'
 
 export type ICourse = 'B. Tech' | 'M. Tech' | 'B.E.'
 

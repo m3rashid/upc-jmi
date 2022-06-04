@@ -4,15 +4,13 @@ import {
   MantineProvider,
   ColorScheme,
   MantineThemeOverride,
-  createStyles,
 } from '@mantine/core'
+import { RecoilRoot } from 'recoil'
 import { ModalsProvider } from '@mantine/modals'
 import { NotificationsProvider } from '@mantine/notifications'
-// import { BrowserRouter } from "react-router-dom";
-import { RecoilRoot } from 'recoil'
 
-import TopHeader from './header'
 import Footer from './footer'
+import TopHeader from './header'
 import ScrollTopTop from './scrollToTop'
 
 interface IProps {

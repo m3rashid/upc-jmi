@@ -1,7 +1,8 @@
-import { Card, SimpleGrid, Text } from '@mantine/core'
 import React from 'react'
-import { useGlobalStyles } from '../../components/globals/globalStyles'
+import { Card, SimpleGrid, Text } from '@mantine/core'
+
 import PageWrapper from '../../components/pageWrapper'
+import { useGlobalStyles } from '../../components/globals/globalStyles'
 
 interface IProps {}
 

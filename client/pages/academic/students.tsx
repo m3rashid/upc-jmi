@@ -1,13 +1,14 @@
 import { Card, Select, SimpleGrid, Title } from '@mantine/core'
 import React from 'react'
-import { useGlobalStyles } from '../../components/globals/globalStyles'
-import PageWrapper from '../../components/pageWrapper'
+
 import {
   batchOptions,
   courseOptions,
   IBatch,
   ICourse,
 } from '../../data/academic/students'
+import PageWrapper from '../../components/pageWrapper'
+import { useGlobalStyles } from '../../components/globals/globalStyles'
 
 interface IProps {}
 

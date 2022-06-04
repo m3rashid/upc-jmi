@@ -6,10 +6,10 @@ import {
   Table as MantineTable,
   Text,
 } from '@mantine/core'
+import Link from 'next/link'
 
 import { useGlobalStyles } from '../globals/globalStyles'
 import { IBeCourseStructure } from '../../data/academic/courseStructure/be'
-import Link from 'next/link'
 
 const BeTable: React.FC<{ data: IBeCourseStructure[] }> = ({ data }) => {
   const { classes: globalClasses } = useGlobalStyles()
