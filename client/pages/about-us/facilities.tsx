@@ -15,9 +15,9 @@ import {
   IShortName,
   IFacility,
 } from '../../data/about-us/facilities'
-import { useGlobalStyles } from '../../components/globals/globalStyles'
-import TwoColumnGrid from '../../components/twoColumnGrid'
 import PageWrapper from '../../components/pageWrapper'
+import TwoColumnGrid from '../../components/twoColumnGrid'
+import { useGlobalStyles } from '../../components/globals/globalStyles'
 
 export const useStyles = createStyles((theme) => ({
   card: {

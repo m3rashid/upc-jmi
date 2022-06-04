@@ -1,9 +1,9 @@
 import React from 'react'
+import { Card, ScrollArea, Table, Title } from '@mantine/core'
 
+import PageWrapper from '../../components/pageWrapper'
 import { staffDetails } from '../../data/academic/staffMembers'
 import { useGlobalStyles } from '../../components/globals/globalStyles'
-import { Card, ScrollArea, Table, Title } from '@mantine/core'
-import PageWrapper from '../../components/pageWrapper'
 
 interface IProps {}
 

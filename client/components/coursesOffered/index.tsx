@@ -1,10 +1,10 @@
-import { Card, SimpleGrid, Text, Title } from '@mantine/core'
 import React from 'react'
+import { Card, SimpleGrid, Text, Title } from '@mantine/core'
 
 import { useGlobalStyles } from '../globals/globalStyles'
+import { beData } from '../../data/academic/courseDetails/be'
 import { btechData } from '../../data/academic/courseDetails/btech'
 import { mtechData } from '../../data/academic/courseDetails/mtech'
-import { beData } from '../../data/academic/courseDetails/be'
 
 interface IItem {
   id: string

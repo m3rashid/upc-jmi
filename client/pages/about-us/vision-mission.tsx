@@ -1,8 +1,8 @@
 import React from 'react'
 import { createStyles, Paper, SimpleGrid, Text } from '@mantine/core'
 
-import { useGlobalStyles } from '../../components/globals/globalStyles'
 import PageWrapper from '../../components/pageWrapper'
+import { useGlobalStyles } from '../../components/globals/globalStyles'
 
 const useStyles = createStyles((theme) => ({
   card: {

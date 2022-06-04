@@ -1,6 +1,6 @@
-import { Card, SimpleGrid, Text, Title } from '@mantine/core'
 import React from 'react'
 import { useGlobalStyles } from '../globals/globalStyles'
+import { Card, SimpleGrid, Text, Title } from '@mantine/core'
 import { phdData as data } from '../../data/academic/courseDetails/phd'
 
 interface IProps {}

@@ -1,13 +1,13 @@
 import React from 'react'
+import { useWindowScroll } from '@mantine/hooks'
 import { Avatar, Card, Group, SimpleGrid, Text, Title } from '@mantine/core'
 
-import { useGlobalStyles } from '../../components/globals/globalStyles'
-import TwoColumnGrid from '../../components/twoColumnGrid'
-import { facilityList } from '../../data/academic/facultyMembers/short'
-import { IFacultyId } from '../../data/academic/facultyMembers/detail'
-import { useWindowScroll } from '@mantine/hooks'
-import FacultyMemberDetails from '../../components/facultyMembers'
 import PageWrapper from '../../components/pageWrapper'
+import TwoColumnGrid from '../../components/twoColumnGrid'
+import FacultyMemberDetails from '../../components/facultyMembers'
+import { IFacultyId } from '../../data/academic/facultyMembers/detail'
+import { facilityList } from '../../data/academic/facultyMembers/short'
+import { useGlobalStyles } from '../../components/globals/globalStyles'
 
 interface IProps {}
 

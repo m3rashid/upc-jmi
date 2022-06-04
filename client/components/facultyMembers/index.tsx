@@ -1,11 +1,12 @@
 import React from 'react'
+import { Card, Text, Title } from '@mantine/core'
+import { useGlobalStyles } from '../globals/globalStyles'
+
 import {
   facultyDetails,
   IDetail,
   IFacultyId,
 } from '../../data/academic/facultyMembers/detail'
-import { useGlobalStyles } from '../globals/globalStyles'
-import { Card, Text, Title } from '@mantine/core'
 
 interface IProps {
   facultyId: IFacultyId

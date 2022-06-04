@@ -1,5 +1,5 @@
-import { ArrowUpIcon } from '@modulz/radix-icons'
 import { useWindowScroll } from '@mantine/hooks'
+import { ArrowUpIcon } from '@modulz/radix-icons'
 import { Affix, Button, Transition } from '@mantine/core'
 
 const ScrollToTop = () => {

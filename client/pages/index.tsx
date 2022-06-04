@@ -1,8 +1,9 @@
+import Head from 'next/head'
 import type { NextPage } from 'next'
 import { createStyles, Title, Text, Container } from '@mantine/core'
-import Head from 'next/head'
-import TwoColumnGrid from '../components/twoColumnGrid'
+
 import PageWrapper from '../components/pageWrapper'
+import TwoColumnGrid from '../components/twoColumnGrid'
 
 export const useStyles = createStyles((theme) => ({
   wrapper: {

@@ -1,17 +1,17 @@
 import React from 'react'
+import { useWindowScroll } from '@mantine/hooks'
 import { Card, createStyles, SimpleGrid, Text, Title } from '@mantine/core'
 
-import { coursesList, IShortName } from '../../data/academic/coursesOffered'
-import { useGlobalStyles } from '../../components/globals/globalStyles'
-import TwoColumnGrid from '../../components/twoColumnGrid'
 import {
   BeCourse,
   BtechCourse,
   MtechCourse,
 } from '../../components/coursesOffered'
-import PhdCourse from '../../components/coursesOffered/phd'
-import { useWindowScroll } from '@mantine/hooks'
 import PageWrapper from '../../components/pageWrapper'
+import TwoColumnGrid from '../../components/twoColumnGrid'
+import PhdCourse from '../../components/coursesOffered/phd'
+import { useGlobalStyles } from '../../components/globals/globalStyles'
+import { coursesList, IShortName } from '../../data/academic/coursesOffered'
 
 export const useStyles = createStyles((theme) => ({
   title: {
