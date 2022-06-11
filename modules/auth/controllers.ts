@@ -63,3 +63,19 @@ export const createAccount = async (req: Request, res: Response) => {
   const { token } = issueJWT(newUser)
   return res.status(200).json({ token, user: { ...newUser, password: '' } })
 }
+
+export const createAdminAccount = async (req: Request, res: Response) => {
+  const { email, password, name, adminUid } = req.body
+  if (!adminUid || adminUid !== process.env.ADMIN_UID)
+    throw new Error('Invalid Admin UID')
+  const hash: string = await hashPassword(password)
+  const newUser: HydratedDocument<IUser> = new User({
+    email,
+    password: hash,
+    name: name,
+    role: 'ADMIN',
+  })
+  const saved = await newUser.save()
+  const { token } = issueJWT(newUser)
+  return res.status(200).json({ token, user: { ...saved, password: '' } })
+}
