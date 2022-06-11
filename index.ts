@@ -8,7 +8,6 @@ import express from 'express'
 import mongoose from 'mongoose'
 
 import routes from './routes'
-import logger from './modules/utils/logger'
 import { eventsRouter } from './modules/events'
 import { appConfig } from './modules/appConfig'
 import { projectsRouter } from './modules/projects'
@@ -50,11 +49,11 @@ const port = process.env.PORT || 5000
 app.listen(port, async () => {
   try {
     await mongoose.connect(appConfig.mongo.connectionString)
-    logger.info(`Server ready on port:${port}`)
-    logger.info('Mongoose is connected')
+    console.log(`Server ready on port:${port}`)
+    console.log('Mongoose is connected')
   } catch (err) {
-    logger.error(JSON.stringify(err))
-    logger.error('MongoDB connection error')
+    console.error(JSON.stringify(err))
+    console.error('MongoDB connection error')
     process.exit(1)
   }
 })

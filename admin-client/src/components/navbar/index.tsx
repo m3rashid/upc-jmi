@@ -7,13 +7,15 @@ import data from './routesData'
 import NavbarLink from './link'
 import Signup from '../auth/signup'
 import LoginForm from '../auth/login'
-import { userLoggedIn } from '../../App'
 import LogoutDialog from '../auth/logout'
 import ChangeColorScheme from './changeColorScheme'
+import { authAtom } from '../../atoms/auth'
+import { useRecoilValue } from 'recoil'
 
 type modalOpenType = 'login' | 'logout' | 'signup' | ''
 
 const SideNavbar = () => {
+  const { isAuthenticated } = useRecoilValue(authAtom)
   const [modalOpen, setModalOpen] = React.useState<modalOpenType>('')
   const navigate = useNavigate()
   const { pathname } = useLocation()
@@ -48,7 +50,7 @@ const SideNavbar = () => {
         <Navbar.Section>
           <Group direction="column" align="center" spacing={0}>
             <ChangeColorScheme />
-            {userLoggedIn ? (
+            {isAuthenticated ? (
               <NavbarLink
                 icon={Logout}
                 label="Logout"

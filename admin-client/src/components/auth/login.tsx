@@ -8,6 +8,9 @@ import {
   Stack,
 } from '@mantine/core'
 import { At } from 'tabler-icons-react'
+import { tokenName, useSafeApiCall } from '../../api/constants'
+import { useSetRecoilState } from 'recoil'
+import { authAtom } from '../../atoms/auth'
 
 interface IProps {
   open: boolean
@@ -15,13 +18,32 @@ interface IProps {
 }
 
 const Login: React.FC<IProps> = ({ open, onClose }) => {
+  const setAuthState = useSetRecoilState(authAtom)
+  const { safeApiCall } = useSafeApiCall()
+
   const emailRef = React.useRef<HTMLInputElement>(null)
   const passwordRef = React.useRef<HTMLInputElement>(null)
 
-  const handleLogin = () => {
-    const email = emailRef.current?.value
-    const password = passwordRef.current?.value
-    console.log({ email, password })
+  const handleLogin = async () => {
+    const data = await safeApiCall({
+      endpoint: '/api/auth/login',
+      body: {
+        email: emailRef.current?.value,
+        password: passwordRef.current?.value,
+      },
+      notif: {
+        id: 'login',
+        successMsg: {
+          title: 'Login successful',
+          message: 'Successfully logged in your account',
+        },
+      },
+    })
+    if (data) {
+      window.localStorage.setItem(tokenName, data.data.token)
+      setAuthState({ isAuthenticated: true, user: data.data.user })
+    }
+
     onClose()
   }
 

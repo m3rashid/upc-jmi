@@ -7,10 +7,16 @@ import {
   validateCreateAccount,
   validateLogin,
   validateRegister,
+  createAdminAccount,
+  getCurrentuser,
+  checkAdmin,
+  checkAuth,
 } from './modules/auth'
-import { createAdminAccount } from './modules/auth/controllers'
 import { validateCreateAdmin } from './modules/auth/validators'
-import { authRateLimiter } from './modules/utils/rateLimiters'
+import {
+  authRateLimiter,
+  regularRateLimiter,
+} from './modules/utils/rateLimiters'
 
 const router = express.Router()
 
@@ -21,26 +27,47 @@ export const makeSafe =
   }
 
 // health check
-router.get('/', (_: Request, res: Response) => {
+router.get('/', regularRateLimiter, (_: Request, res: Response) => {
   res.json({ message: 'Server is OK' })
 })
 
 // </endpoint> <rateLimit> <validator> <auth> <controller>
 
 // Auth Routes
-router.post('/api/auth/login', authRateLimiter, validateLogin, makeSafe(login))
-router.post('/api/auth/register', validateRegister, makeSafe(register))
+router.post(
+  '/api/auth/login',
+  authRateLimiter,
+  makeSafe(validateLogin),
+  makeSafe(login)
+)
+router.post(
+  '/api/auth/register',
+  makeSafe(validateRegister),
+  makeSafe(register)
+)
 router.post(
   '/api/auth/create-account',
   authRateLimiter,
-  validateCreateAccount,
+  makeSafe(validateCreateAccount),
   makeSafe(createAccount)
 )
 router.post(
   '/api/auth/create-admin',
   authRateLimiter,
-  validateCreateAdmin,
+  makeSafe(validateCreateAdmin),
   makeSafe(createAdminAccount)
+)
+router.post(
+  '/api/auth/get-admin',
+  regularRateLimiter,
+  checkAdmin,
+  makeSafe(getCurrentuser)
+)
+router.post(
+  '/api/auth/get-user',
+  regularRateLimiter,
+  checkAuth,
+  makeSafe(getCurrentuser)
 )
 
 export default router

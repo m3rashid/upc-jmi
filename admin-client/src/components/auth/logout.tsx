@@ -1,5 +1,8 @@
 import React from 'react'
 import { Dialog, Button, Text } from '@mantine/core'
+import { tokenName } from '../../api/constants'
+import { useSetRecoilState } from 'recoil'
+import { authAtom } from '../../atoms/auth'
 
 interface IProps {
   open: boolean
@@ -7,7 +10,14 @@ interface IProps {
 }
 
 const Logout: React.FC<IProps> = ({ open, onClose }) => {
+  const setAuthState = useSetRecoilState(authAtom)
+
   const handleLogout = () => {
+    window.localStorage.removeItem(tokenName)
+    setAuthState({
+      isAuthenticated: false,
+      user: null,
+    })
     onClose()
   }
 

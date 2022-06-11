@@ -5,7 +5,6 @@ import fs from 'fs'
 import bcrypt from 'bcrypt'
 
 import { IUser } from './model'
-import logger from '../utils/logger'
 
 const privateKey = fs.readFileSync(
   path.join(__dirname, './keys/private.pem'),
@@ -36,7 +35,7 @@ export const verifyJWT = (token: string) => {
     })
     return { valid: true, expired: false, payload }
   } catch (err: any) {
-    logger.error(JSON.stringify(err))
+    console.error(JSON.stringify(err))
     return {
       valid: false,
       expired: err.message === 'jwt expired',

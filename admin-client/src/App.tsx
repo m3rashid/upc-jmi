@@ -1,7 +1,12 @@
 import React from 'react'
 import { Loader } from '@mantine/core'
 import { Navigate, Route, Routes } from 'react-router-dom'
+import { useRecoilState } from 'recoil'
 
+import { authAtom } from './atoms/auth'
+import { useSafeApiCall } from './api/constants'
+
+const NotLoggedIn = React.lazy(() => import('./pages/notLoggedIn'))
 const Home = React.lazy(() => import('./pages/home'))
 const Achievements = React.lazy(() => import('./pages/aboutUs/achievements'))
 const Events = React.lazy(() => import('./pages/aboutUs/events'))
@@ -14,10 +19,23 @@ const Projects = React.lazy(() => import('./pages/research/projects'))
 const Publications = React.lazy(() => import('./pages/research/publications'))
 const ResearchArea = React.lazy(() => import('./pages/research/researchArea'))
 
-export const userLoggedIn = false
-
 const App = () => {
-  if (userLoggedIn) {
+  const { safeApiCall } = useSafeApiCall()
+  const [auth, setAuth] = useRecoilState(authAtom)
+
+  React.useEffect(() => {
+    safeApiCall({
+      endpoint: '/api/auth/get-admin',
+      body: {},
+      notif: {
+        id: 'get-admin',
+      },
+    }).then((data) => {
+      if (data) setAuth({ isAuthenticated: true, user: data.data.user })
+    })
+  }, [])
+
+  if (auth.isAuthenticated) {
     return (
       <React.Suspense fallback={<Loader />}>
         <Routes>
@@ -46,7 +64,8 @@ const App = () => {
       <React.Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route path="/login-first" element={<NotLoggedIn />} />
+          <Route path="*" element={<Navigate to="/login-first" />} />
         </Routes>
       </React.Suspense>
     )
