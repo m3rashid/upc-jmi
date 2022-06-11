@@ -1,4 +1,10 @@
-export { login, register, createAccount } from './controllers'
+export {
+  login,
+  register,
+  createAccount,
+  createAdminAccount,
+  getCurrentuser,
+} from './controllers'
 
 export { checkAdmin, checkAuth } from './middlewares'
 

@@ -5,8 +5,10 @@ import {
   ColorScheme,
   MantineThemeOverride,
 } from '@mantine/core'
+import { NotificationsProvider } from '@mantine/notifications'
 import { BrowserRouter } from 'react-router-dom'
 import SideNavbar from './navbar'
+import { RecoilRoot } from 'recoil'
 
 interface IProps {
   children: React.ReactNode
@@ -34,27 +36,35 @@ const RootWrapper: React.FC<IProps> = ({ children }) => {
 
   return (
     <BrowserRouter>
-      <ColorSchemeProvider
-        colorScheme={colorScheme}
-        toggleColorScheme={toggleColorScheme}
-      >
-        <MantineProvider
-          theme={{
-            ...theme,
-            colors: { ...theme.colors, brand: ['#046b09'] },
-          }}
-          withGlobalStyles
-          withNormalizeCSS
+      <RecoilRoot>
+        <ColorSchemeProvider
+          colorScheme={colorScheme}
+          toggleColorScheme={toggleColorScheme}
         >
-          <div
-            style={{ display: 'flex', flexDirection: 'row', height: '100vh' }}
-            className="hide-scrollbar"
+          <MantineProvider
+            theme={{
+              ...theme,
+              colors: { ...theme.colors, brand: ['#046b09'] },
+            }}
+            withGlobalStyles
+            withNormalizeCSS
           >
-            <SideNavbar />
-            <div style={{ overflowX: 'auto' }}>{children}</div>
-          </div>
-        </MantineProvider>
-      </ColorSchemeProvider>
+            <NotificationsProvider position="top-right" zIndex={2077} limit={5}>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  height: '100vh',
+                }}
+                className="hide-scrollbar"
+              >
+                <SideNavbar />
+                <div style={{ overflowX: 'auto' }}>{children}</div>
+              </div>
+            </NotificationsProvider>
+          </MantineProvider>
+        </ColorSchemeProvider>
+      </RecoilRoot>
     </BrowserRouter>
   )
 }

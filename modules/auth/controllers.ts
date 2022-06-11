@@ -4,7 +4,6 @@ import { HydratedDocument } from 'mongoose'
 import User, { IUser } from './model'
 import Otp, { IOtp } from './otp/model'
 import { generateOtp } from './otp/helpers'
-import logger from '../utils/logger'
 import { hashPassword, comparePassword, issueJWT } from './helpers'
 
 export const login = async (req: Request, res: Response) => {
@@ -16,7 +15,7 @@ export const login = async (req: Request, res: Response) => {
   if (!match) throw new Error('Credentials Invalid')
 
   const { token } = issueJWT(user)
-  return res.status(200).json({ token, user: { ...user, password: '' } })
+  return res.status(200).json({ token, user })
 }
 
 export const register = async (req: Request, res: Response) => {
@@ -41,7 +40,7 @@ export const register = async (req: Request, res: Response) => {
   }
 
   // TODO send mail to the user with the OTP
-  logger.info(JSON.stringify({ emailToSend, otpToSend }))
+  console.log({ emailToSend, otpToSend })
   return res.status(200).json({ message: 'OTP sent to your email' })
 }
 
@@ -49,7 +48,7 @@ export const createAccount = async (req: Request, res: Response) => {
   const { email, otp } = req.body
 
   const dbOtp = await Otp.findOne({ email, otp })
-  logger.info(JSON.stringify({ dbOtp, otp: parseInt(otp) }))
+  console.log({ dbOtp, otp: parseInt(otp) })
   if (!dbOtp || parseInt(otp) !== dbOtp.otp) throw new Error('Invalid OTP')
 
   const hash: string = await hashPassword(req.body.password)
@@ -61,7 +60,7 @@ export const createAccount = async (req: Request, res: Response) => {
   await newUser.save()
   await Otp.deleteOne({ email })
   const { token } = issueJWT(newUser)
-  return res.status(200).json({ token, user: { ...newUser, password: '' } })
+  return res.status(200).json({ token, user: newUser })
 }
 
 export const createAdminAccount = async (req: Request, res: Response) => {
@@ -77,5 +76,16 @@ export const createAdminAccount = async (req: Request, res: Response) => {
   })
   const saved = await newUser.save()
   const { token } = issueJWT(newUser)
-  return res.status(200).json({ token, user: { ...saved, password: '' } })
+  return res.status(200).json({ token, user: saved })
+}
+
+export const getCurrentuser = async (req: Request, res: Response) => {
+  const userId = req.user?.id
+  if (!userId) throw new Error('NO id found')
+
+  const user = await User.findById(userId)
+  if (!user) throw new Error('User not found')
+
+  const { token } = issueJWT(user)
+  return res.status(200).json({ user, token })
 }

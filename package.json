@@ -18,9 +18,9 @@
     "start:dev": "NODE_ENV=development ts-node-dev --respawn index.ts",
     "prod": "NODE_ENV=production node ./build/index.js",
     "prod:dev": "NODE_ENV=development node ./build/index.js",
-    "keypair:setup" : "cp -r ./uploads ./build/uploads && mkdir ./build/modules/auth/keys",
+    "keypair:setup": "cp -r ./uploads ./build/uploads && mkdir ./build/modules/auth/keys",
     "keypair:generate": "node ./build/modules/auth/generateKeyPair.js",
-    "remove:build" : "rm -r ./build || true",
+    "remove:build": "rm -r ./build || true",
     "build": "yarn remove:build && tsc && yarn keypair:setup && yarn keypair:generate",
     "format:check": "prettier --check .",
     "format:write": "prettier --write .",
@@ -48,7 +48,6 @@
     "joi": "^17.6.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.3",
-    "winston": "^3.7.2",
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {
