@@ -47,6 +47,7 @@ const RootWrapper: React.FC<IProps> = ({ children }) => {
           theme={{
             ...theme,
             colors: { ...theme.colors, brand: ['#046b09'] },
+            fontFamily: 'Quicksand, sans-serif',
           }}
           withGlobalStyles
           withNormalizeCSS

@@ -19,7 +19,7 @@ export const useStyles = createStyles((theme) => ({
         : theme.colors.dark[5],
     marginBottom: theme.spacing.xs,
     textAlign: 'center',
-
+    fontFamily: 'Quicksand, sans-serif',
     '@media (max-width: 520px)': {
       fontSize: 28,
     },
@@ -42,7 +42,7 @@ const Home: NextPage = () => {
   return (
     <PageWrapper>
       <Head>
-        <title>Create Next App</title>
+        <title>JMI CSE</title>
       </Head>
       <div className={classes.wrapper}>
         <Title className={classes.title}>

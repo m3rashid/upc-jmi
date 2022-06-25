@@ -65,7 +65,12 @@ const CourseStructure: React.FC<IProps> = () => {
             />
           </SimpleGrid>
         </Card>
-        <Title order={2} mb={10} ml={5}>
+        <Title
+          order={2}
+          mb={10}
+          ml={5}
+          style={{ fontFamily: 'Quicksand, sans-serif' }}
+        >
           {`${inputCourse} ${sem} details`}
         </Title>
         <AllCourseStructure course={inputCourse} semYear={sem} />

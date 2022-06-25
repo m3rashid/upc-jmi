@@ -38,6 +38,7 @@ const BeTable: React.FC<{ data: IBeCourseStructure[] }> = ({ data }) => {
         <td align="center">{row.totalMarks}</td>
       </tr>
     ))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
