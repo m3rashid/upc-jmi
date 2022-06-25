@@ -40,7 +40,11 @@ const CourseDetails: React.FC<IProps> = ({ data }) => {
 
   return (
     <Card className={globalClasses.themeColor}>
-      <Title order={2} className={globalClasses.brandColor}>
+      <Title
+        order={2}
+        className={globalClasses.brandColor}
+        style={{ fontFamily: 'Quicksand, sans-serif' }}
+      >
         {data.title}
       </Title>
       <br />
@@ -54,7 +58,11 @@ const CourseDetails: React.FC<IProps> = ({ data }) => {
         <br />
         {data.eligibility && (
           <div>
-            <Title order={3} className={globalClasses.brandColor}>
+            <Title
+              order={3}
+              className={globalClasses.brandColor}
+              style={{ fontFamily: 'Quicksand, sans-serif' }}
+            >
               Eligibility
             </Title>
             {data.eligibility.map((el) => (
@@ -66,7 +74,11 @@ const CourseDetails: React.FC<IProps> = ({ data }) => {
 
         {data.admProcess && (
           <div>
-            <Title order={3} className={globalClasses.brandColor}>
+            <Title
+              order={3}
+              className={globalClasses.brandColor}
+              style={{ fontFamily: 'Quicksand, sans-serif' }}
+            >
               Admission Process
             </Title>
             {data.admProcess.map((el) => (
@@ -78,7 +90,11 @@ const CourseDetails: React.FC<IProps> = ({ data }) => {
 
         {data.programEducationalObjectives && (
           <div>
-            <Title order={3} className={globalClasses.brandColor}>
+            <Title
+              order={3}
+              className={globalClasses.brandColor}
+              style={{ fontFamily: 'Quicksand, sans-serif' }}
+            >
               Program Educational Objectives
             </Title>
             {data.programEducationalObjectives.map((el) => (
@@ -95,7 +111,11 @@ const CourseDetails: React.FC<IProps> = ({ data }) => {
 
         {data.programSpecificOutcomes && (
           <div>
-            <Title order={3} className={globalClasses.brandColor}>
+            <Title
+              order={3}
+              className={globalClasses.brandColor}
+              style={{ fontFamily: 'Quicksand, sans-serif' }}
+            >
               Program Specific Outcomes
             </Title>
             {data.programSpecificOutcomes.map((el) => (
@@ -111,7 +131,11 @@ const CourseDetails: React.FC<IProps> = ({ data }) => {
         )}
 
         <div>
-          <Title order={3} className={globalClasses.brandColor}>
+          <Title
+            order={3}
+            className={globalClasses.brandColor}
+            style={{ fontFamily: 'Quicksand, sans-serif' }}
+          >
             Career Prospects
           </Title>
           {data.careerProspects.map((el) => (

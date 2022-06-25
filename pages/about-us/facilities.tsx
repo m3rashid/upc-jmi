@@ -63,7 +63,12 @@ const Facilities: React.FC<IProps> = () => {
 
   return (
     <PageWrapper>
-      <Title className={globalClasses.themeColor} my={20} ml={5}>
+      <Title
+        className={globalClasses.themeColor}
+        my={20}
+        ml={5}
+        style={{ fontFamily: 'Quicksand, sans-serif' }}
+      >
         Facilities
       </Title>
       <TwoColumnGrid>
@@ -76,7 +81,10 @@ const Facilities: React.FC<IProps> = () => {
               <Title
                 order={4}
                 className={`${classes.title} ${globalClasses.brandColor}`}
-                style={{ cursor: 'pointer' }}
+                style={{
+                  cursor: 'pointer',
+                  fontFamily: 'Quicksand, sans-serif',
+                }}
                 onClick={() => handleSelect(facility.shortName)}
               >
                 {facility.title}

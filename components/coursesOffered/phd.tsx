@@ -10,7 +10,11 @@ const PhdCourse: React.FC<IProps> = () => {
 
   return (
     <Card className={globalClasses.themeColor}>
-      <Title order={2} className={globalClasses.brandColor}>
+      <Title
+        order={2}
+        className={globalClasses.brandColor}
+        style={{ fontFamily: 'Quicksand, sans-serif' }}
+      >
         {data.title}
       </Title>
       <br />
@@ -24,14 +28,22 @@ const PhdCourse: React.FC<IProps> = () => {
           <br />
         </div>
         <div>
-          <Title order={3} className={globalClasses.brandColor}>
+          <Title
+            order={3}
+            className={globalClasses.brandColor}
+            style={{ fontFamily: 'Quicksand, sans-serif' }}
+          >
             Felloships
           </Title>
           <Text>{data.fellowships}</Text>
           <br />
         </div>
         <div>
-          <Title order={3} className={globalClasses.brandColor}>
+          <Title
+            order={3}
+            className={globalClasses.brandColor}
+            style={{ fontFamily: 'Quicksand, sans-serif' }}
+          >
             Admission Process
           </Title>
           {data.admProcess.map((el) => (
@@ -40,7 +52,11 @@ const PhdCourse: React.FC<IProps> = () => {
           <br />
         </div>
         <div>
-          <Title order={3} className={globalClasses.brandColor}>
+          <Title
+            order={3}
+            className={globalClasses.brandColor}
+            style={{ fontFamily: 'Quicksand, sans-serif' }}
+          >
             Eligibility
           </Title>
           {data.eligibility.map((el) => (
@@ -49,7 +65,11 @@ const PhdCourse: React.FC<IProps> = () => {
           <br />
         </div>
         <div>
-          <Title order={3} className={globalClasses.brandColor}>
+          <Title
+            order={3}
+            className={globalClasses.brandColor}
+            style={{ fontFamily: 'Quicksand, sans-serif' }}
+          >
             Career Prospects after Ph.D.
           </Title>
           {data.careerProspects.map((el) => (
