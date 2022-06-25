@@ -36,7 +36,12 @@ const CoursesOffered: React.FC<IProps> = () => {
 
   return (
     <PageWrapper>
-      <Title className={globalClasses.themeColor} mb={20} ml={5}>
+      <Title
+        className={globalClasses.themeColor}
+        mb={20}
+        ml={5}
+        style={{ fontFamily: 'Quicksand, sans-serif' }}
+      >
         Courses Offered
       </Title>
       <TwoColumnGrid>
@@ -47,6 +52,7 @@ const CoursesOffered: React.FC<IProps> = () => {
                 order={4}
                 className={classes.title}
                 onClick={() => handleCourseChange(course.shortName)}
+                style={{ fontFamily: 'Quicksand, sans-serif' }}
               >
                 {course.title}
               </Title>

@@ -22,7 +22,11 @@ const StaffMembers: React.FC<IProps> = () => {
 
   return (
     <PageWrapper>
-      <Title order={2} className={globalClasses.themeColor}>
+      <Title
+        order={2}
+        className={globalClasses.themeColor}
+        style={{ fontFamily: 'Quicksand, sans-serif' }}
+      >
         Staff Members
       </Title>
       <br />

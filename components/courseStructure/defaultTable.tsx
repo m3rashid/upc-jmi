@@ -38,6 +38,7 @@ const Table: React.FC<{ data: IBTechCourseStructure[] }> = ({ data }) => {
         <td align="center">{row.credits}</td>
       </tr>
     ))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

@@ -25,7 +25,11 @@ const FacultyMemberDetails: React.FC<IProps> = ({ facultyId }) => {
     <Card
       className={`${globalClasses.themeColor} ${globalClasses.twoColumnGridHeightFix}`}
     >
-      <Title order={2} className={globalClasses.brandColor}>
+      <Title
+        order={2}
+        className={globalClasses.brandColor}
+        style={{ fontFamily: 'Quicksand, sans-serif' }}
+      >
         {faculty.name}
       </Title>
 
@@ -50,7 +54,11 @@ const FacultyMemberDetails: React.FC<IProps> = ({ facultyId }) => {
       <br />
       {faculty.classesTaught.length > 0 && (
         <>
-          <Title order={3} className={globalClasses.brandColor}>
+          <Title
+            order={3}
+            className={globalClasses.brandColor}
+            style={{ fontFamily: 'Quicksand, sans-serif' }}
+          >
             Classes Taught
           </Title>
           {faculty.classesTaught.map((c, i) => (
@@ -61,7 +69,11 @@ const FacultyMemberDetails: React.FC<IProps> = ({ facultyId }) => {
       )}
       {faculty.coursesTaught.length > 0 && (
         <>
-          <Title order={3} className={globalClasses.brandColor}>
+          <Title
+            order={3}
+            className={globalClasses.brandColor}
+            style={{ fontFamily: 'Quicksand, sans-serif' }}
+          >
             Courses Taught
           </Title>
           {faculty.coursesTaught.map((c, i) => (

@@ -36,7 +36,12 @@ const Students: React.FC<IProps> = () => {
             />
           </SimpleGrid>
         </Card>
-        <Title order={2} mb={10} ml={5}>
+        <Title
+          order={2}
+          mb={10}
+          ml={5}
+          style={{ fontFamily: 'Quicksand, sans-serif' }}
+        >
           {`Details for ${course} ${batch} batch`}
         </Title>
       </div>

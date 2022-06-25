@@ -23,7 +23,12 @@ const FacultyMembers: React.FC<IProps> = () => {
 
   return (
     <PageWrapper>
-      <Title className={globalClasses.themeColor} mb={20} ml={5}>
+      <Title
+        className={globalClasses.themeColor}
+        mb={20}
+        ml={5}
+        style={{ fontFamily: 'Quicksand, sans-serif' }}
+      >
         Faculty Members
       </Title>
       <TwoColumnGrid>
@@ -47,6 +52,7 @@ const FacultyMembers: React.FC<IProps> = () => {
                     weight={500}
                     className={globalClasses.brandColor}
                     onClick={() => handleFacultyChange(faculty.id)}
+                    style={{ cursor: 'pointer' }}
                   >
                     {faculty.name}
                   </Text>
