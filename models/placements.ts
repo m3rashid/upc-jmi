@@ -10,7 +10,6 @@ const placementSchema = new mongoose.Schema<IPlacement>(
   { timestamps: true }
 )
 
-export const Placement = mongoose.model<IPlacement>(
-  'Placement',
-  placementSchema
-)
+export const Placement =
+  mongoose.models.Placement ||
+  mongoose.model<IPlacement>('Placement', placementSchema)

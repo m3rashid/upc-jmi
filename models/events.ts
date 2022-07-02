@@ -44,4 +44,5 @@ const eventSchema = new mongoose.Schema<IEvent>(
   { timestamps: true }
 )
 
-export const Event = mongoose.model<IEvent>('Event', eventSchema)
+export const Event =
+  mongoose.models.Event || mongoose.model<IEvent>('Event', eventSchema)

@@ -24,8 +24,6 @@ const achievementSchema = new mongoose.Schema<IAchievement>(
   { timestamps: true }
 )
 
-const Achievement = mongoose.model<IAchievement>(
-  'Achievement',
-  achievementSchema
-)
-export default Achievement
+export const Achievement =
+  mongoose.models.Achievement ||
+  mongoose.model<IAchievement>('Achievement', achievementSchema)

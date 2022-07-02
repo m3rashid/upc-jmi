@@ -47,7 +47,6 @@ const phdStudentSchema = new mongoose.Schema<IPhdStudent>(
   { timestamps: true }
 )
 
-export const PhdStudent = mongoose.model<IPhdStudent>(
-  'PhdStudent',
-  phdStudentSchema
-)
+export const PhdStudent =
+  mongoose.models.PhdStudent ||
+  mongoose.model<IPhdStudent>('PhdStudent', phdStudentSchema)
