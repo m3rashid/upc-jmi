@@ -3,8 +3,8 @@ import NextAuth from 'next-auth'
 import { ObjectId } from 'mongoose'
 import CredentialProvider from 'next-auth/providers/credentials'
 
-import connectDb from 'models'
-import { ROLE, User } from 'models/user'
+import connectDb from 'server/models'
+import { ROLE, User } from 'server/models/user'
 import { IUser } from 'components/helpers/types'
 
 connectDb()

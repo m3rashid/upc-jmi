@@ -1,9 +1,9 @@
 import React from 'react'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import { Container, createStyles } from '@mantine/core'
 
 import BreadCrumbs from 'components/globals/breadCrumbs'
-import { useRouter } from 'next/router'
 
 export const useStyles = createStyles((theme) => ({
   root: {
