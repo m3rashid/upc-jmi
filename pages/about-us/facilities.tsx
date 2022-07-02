@@ -10,14 +10,9 @@ import {
 } from '@mantine/core'
 import { useWindowScroll } from '@mantine/hooks'
 
-import {
-  facilityList,
-  IShortName,
-  IFacility,
-} from '../../data/about-us/facilities'
-import PageWrapper from '../../components/pageWrapper'
-import TwoColumnGrid from '../../components/twoColumnGrid'
-import { useGlobalStyles } from '../../components/globals/globalStyles'
+import TwoColumnGrid from 'components/twoColumnGrid'
+import { useGlobalStyles } from 'components/globals/globalStyles'
+import { facilityList, IShortName, IFacility } from 'data/about-us/facilities'
 
 export const useStyles = createStyles((theme) => ({
   card: {
@@ -62,7 +57,7 @@ const Facilities: React.FC<IProps> = () => {
   }, [current])
 
   return (
-    <PageWrapper>
+    <>
       <Title
         className={globalClasses.themeColor}
         my={20}
@@ -118,7 +113,7 @@ const Facilities: React.FC<IProps> = () => {
           </Group>
         </Card>
       </TwoColumnGrid>
-    </PageWrapper>
+    </>
   )
 }
 

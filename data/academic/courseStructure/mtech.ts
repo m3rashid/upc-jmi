@@ -1,4 +1,4 @@
-import { IBTechCourseStructure } from './btech'
+import { IBTechCourseStructure } from 'data/academic/courseStructure/btech'
 
 export const mtechSem1: IBTechCourseStructure[] = [
   {

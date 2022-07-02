@@ -14,10 +14,10 @@ import { useRouter } from 'next/router'
 import { Sun, Moon } from 'tabler-icons-react'
 import { useBooleanToggle } from '@mantine/hooks'
 
-import DropDown from './dropDown'
-import { useGlobalStyles } from '../globalStyles'
-import { useStyles, HEADER_HEIGHT } from './styles'
-import { aboutUs, academic, research } from './data'
+import DropDown from 'components/globals/header/dropDown'
+import { useGlobalStyles } from 'components/globals/globalStyles'
+import { useStyles, HEADER_HEIGHT } from 'components/globals/header/styles'
+import { aboutUs, academic, research } from 'components/globals/header/data'
 
 const AboutUsDropdown = () => (
   <DropDown innerData={aboutUs} title="About Us" innerRoute="about-us" />

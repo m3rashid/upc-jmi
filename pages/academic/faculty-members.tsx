@@ -2,12 +2,11 @@ import React from 'react'
 import { useWindowScroll } from '@mantine/hooks'
 import { Avatar, Card, Group, SimpleGrid, Text, Title } from '@mantine/core'
 
-import PageWrapper from '../../components/pageWrapper'
-import TwoColumnGrid from '../../components/twoColumnGrid'
-import FacultyMemberDetails from '../../components/facultyMembers'
-import { IFacultyId } from '../../data/academic/facultyMembers/detail'
-import { facilityList } from '../../data/academic/facultyMembers/short'
-import { useGlobalStyles } from '../../components/globals/globalStyles'
+import TwoColumnGrid from 'components/twoColumnGrid'
+import FacultyMemberDetails from 'components/facultyMembers'
+import { IFacultyId } from 'data/academic/facultyMembers/detail'
+import { facilityList } from 'data/academic/facultyMembers/short'
+import { useGlobalStyles } from 'components/globals/globalStyles'
 
 interface IProps {}
 
@@ -22,7 +21,7 @@ const FacultyMembers: React.FC<IProps> = () => {
   }
 
   return (
-    <PageWrapper>
+    <>
       <Title
         className={globalClasses.themeColor}
         mb={20}
@@ -68,7 +67,7 @@ const FacultyMembers: React.FC<IProps> = () => {
         </SimpleGrid>
         <FacultyMemberDetails facultyId={faculty} />
       </TwoColumnGrid>
-    </PageWrapper>
+    </>
   )
 }
 

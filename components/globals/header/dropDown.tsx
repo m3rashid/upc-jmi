@@ -2,8 +2,8 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import { Text, Menu } from '@mantine/core'
 
-import { Map } from './data'
-import { useGlobalStyles } from '../globalStyles'
+import { Map } from 'components/globals/header/data'
+import { useGlobalStyles } from 'components/globals/globalStyles'
 
 interface IProps {
   innerData: Map
@@ -31,22 +31,20 @@ const DropDown: React.FC<IProps> = ({ innerData, title, innerRoute }) => {
         </Text>
       }
     >
-      {Object.entries(innerData).map(([_, action]) => {
+      {Object.entries(innerData).map(([_, action], index) => {
         return (
-          <>
-            <Menu.Item
-              my={5}
-              px={10}
-              key={action.name}
-              className={classes.link}
-              onClick={(e: any) => {
-                push(action.endpoint)
-                setOpen(false)
-              }}
-            >
-              {action.label}
-            </Menu.Item>
-          </>
+          <Menu.Item
+            my={5}
+            px={10}
+            key={`${action.name}-${index}`}
+            className={classes.link}
+            onClick={(e: any) => {
+              push(action.endpoint)
+              setOpen(false)
+            }}
+          >
+            {action.label}
+          </Menu.Item>
         )
       })}
     </Menu>

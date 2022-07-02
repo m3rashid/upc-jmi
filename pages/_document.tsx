@@ -36,20 +36,19 @@ class MyDocument extends Document {
             name="twitter:image"
             content="https://jmicse.vercel.app/favicon.ico"
           />
-
+          <meta name="og:url" content="https://jmicse.vercel.app/" />
           <meta
             name="description"
-            content="Department of Computer Sciences, Jamia Millia Islamia"
+            content="Official website of the JMI Computer Science and Engineering Department"
           />
           <meta
             name="og:description"
-            content="Department of Computer Sciences, Jamia Millia Islamia"
+            content="Official website of the JMI Computer Science and Engineering Department"
           />
           <meta
             name="twitter:description"
-            content="Department of Computer Sciences, Jamia Millia Islamia"
+            content="Official website of the JMI Computer Science and Engineering Department"
           />
-
           <meta
             name="keywords"
             content="JMI, jmi, JAMIA, jamia, delhi, cse, computer-science, cse, CSE, computer, science"

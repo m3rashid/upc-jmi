@@ -2,8 +2,8 @@ import React from 'react'
 import { Text, Container, ActionIcon, Group } from '@mantine/core'
 import { BrandTwitter, BrandYoutube, BrandInstagram } from 'tabler-icons-react'
 
-import { useStyles } from './styles'
-import { footerLinks, IFooterLink } from './links'
+import { useStyles } from 'components/globals/footer/styles'
+import { footerLinks, IFooterLink } from 'components/globals/footer/links'
 
 interface IFooterLinks {
   data: IFooterLink[]

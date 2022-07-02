@@ -2,8 +2,8 @@ import bcrypt from 'bcrypt'
 import NextAuth from 'next-auth'
 import CredentialProvider from 'next-auth/providers/credentials'
 
-import connectDb from '../../../models'
-import { User } from '../../../models/user'
+import connectDb from 'models'
+import { User } from 'models/user'
 
 connectDb()
 

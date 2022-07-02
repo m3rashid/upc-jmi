@@ -1,4 +1,4 @@
-import { IFacultyId } from './detail'
+import { IFacultyId } from 'data/academic/facultyMembers/detail'
 
 export interface IFaculty {
   id: IFacultyId

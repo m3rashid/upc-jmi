@@ -1,5 +1,5 @@
-import { useWindowScroll } from '@mantine/hooks'
 import { ArrowUp } from 'tabler-icons-react'
+import { useWindowScroll } from '@mantine/hooks'
 import { Affix, Button, Transition } from '@mantine/core'
 
 const ScrollToTop = () => {

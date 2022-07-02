@@ -1,9 +1,8 @@
 import React from 'react'
 import { Card, ScrollArea, Table, Title } from '@mantine/core'
 
-import PageWrapper from '../../components/pageWrapper'
-import { staffDetails } from '../../data/academic/staffMembers'
-import { useGlobalStyles } from '../../components/globals/globalStyles'
+import { staffDetails } from 'data/academic/staffMembers'
+import { useGlobalStyles } from 'components/globals/globalStyles'
 
 interface IProps {}
 
@@ -21,7 +20,7 @@ const StaffMembers: React.FC<IProps> = () => {
   }, [])
 
   return (
-    <PageWrapper>
+    <>
       <Title
         order={2}
         className={globalClasses.themeColor}
@@ -44,7 +43,7 @@ const StaffMembers: React.FC<IProps> = () => {
           </Table>
         </ScrollArea>
       </Card>
-    </PageWrapper>
+    </>
   )
 }
 

@@ -2,16 +2,11 @@ import React from 'react'
 import { useWindowScroll } from '@mantine/hooks'
 import { Card, createStyles, SimpleGrid, Text, Title } from '@mantine/core'
 
-import {
-  BeCourse,
-  BtechCourse,
-  MtechCourse,
-} from '../../components/coursesOffered'
-import PageWrapper from '../../components/pageWrapper'
-import TwoColumnGrid from '../../components/twoColumnGrid'
-import PhdCourse from '../../components/coursesOffered/phd'
-import { useGlobalStyles } from '../../components/globals/globalStyles'
-import { coursesList, IShortName } from '../../data/academic/coursesOffered'
+import TwoColumnGrid from 'components/twoColumnGrid'
+import PhdCourse from 'components/coursesOffered/phd'
+import { useGlobalStyles } from 'components/globals/globalStyles'
+import { coursesList, IShortName } from 'data/academic/coursesOffered'
+import { BeCourse, BtechCourse, MtechCourse } from 'components/coursesOffered'
 
 export const useStyles = createStyles((theme) => ({
   title: {
@@ -35,7 +30,7 @@ const CoursesOffered: React.FC<IProps> = () => {
   }
 
   return (
-    <PageWrapper>
+    <>
       <Title
         className={globalClasses.themeColor}
         mb={20}
@@ -67,7 +62,7 @@ const CoursesOffered: React.FC<IProps> = () => {
           {current === 'phd' && <PhdCourse />}
         </div>
       </TwoColumnGrid>
-    </PageWrapper>
+    </>
   )
 }
 

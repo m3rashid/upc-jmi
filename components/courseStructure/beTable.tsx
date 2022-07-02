@@ -8,8 +8,8 @@ import {
 } from '@mantine/core'
 import Link from 'next/link'
 
-import { useGlobalStyles } from '../globals/globalStyles'
-import { IBeCourseStructure } from '../../data/academic/courseStructure/be'
+import { useGlobalStyles } from 'components/globals/globalStyles'
+import { IBeCourseStructure } from 'data/academic/courseStructure/be'
 
 const BeTable: React.FC<{ data: IBeCourseStructure[] }> = ({ data }) => {
   const { classes: globalClasses } = useGlobalStyles()

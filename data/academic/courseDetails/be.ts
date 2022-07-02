@@ -1,4 +1,4 @@
-import { ICourse } from './'
+import { ICourse } from 'data/academic/courseDetails'
 
 export const beData: ICourse = {
   title: 'Bachelor of Engineering (B.E.)',

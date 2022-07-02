@@ -8,8 +8,6 @@ import {
   Group,
 } from '@mantine/core'
 
-import PageWrapper from '../components/pageWrapper'
-
 export const useStyles = createStyles((theme) => ({
   root: {
     paddingTop: 80,
@@ -52,31 +50,29 @@ const NotFound = () => {
   const { classes } = useStyles()
 
   return (
-    <PageWrapper>
-      <Container className={classes.root}>
-        <div className={classes.label}>404</div>
-        <Title
-          className={classes.title}
-          style={{ fontFamily: 'Quicksand, sans-serif' }}
-        >
-          You have found a secret place.
-        </Title>
-        <Text
-          color="dimmed"
-          size="lg"
-          align="center"
-          className={classes.description}
-        >
-          Unfortunately, this is only a 404 page. You may have mistyped the
-          address, or the page has been moved to another URL.
-        </Text>
-        <Group position="center">
-          <Button variant="subtle" size="md">
-            Take me back to home page
-          </Button>
-        </Group>
-      </Container>
-    </PageWrapper>
+    <Container className={classes.root}>
+      <div className={classes.label}>404</div>
+      <Title
+        className={classes.title}
+        style={{ fontFamily: 'Quicksand, sans-serif' }}
+      >
+        You have found a secret place.
+      </Title>
+      <Text
+        color="dimmed"
+        size="lg"
+        align="center"
+        className={classes.description}
+      >
+        Unfortunately, this is only a 404 page. You may have mistyped the
+        address, or the page has been moved to another URL.
+      </Text>
+      <Group position="center">
+        <Button variant="subtle" size="md">
+          Take me back to home page
+        </Button>
+      </Group>
+    </Container>
   )
 }
 

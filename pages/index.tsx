@@ -1,9 +1,7 @@
-import Head from 'next/head'
 import type { NextPage } from 'next'
 import { createStyles, Title, Text, Container } from '@mantine/core'
 
-import PageWrapper from '../components/pageWrapper'
-import TwoColumnGrid from '../components/twoColumnGrid'
+import TwoColumnGrid from 'components/twoColumnGrid'
 
 export const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -40,10 +38,7 @@ const Home: NextPage = () => {
   const { classes } = useStyles()
 
   return (
-    <PageWrapper>
-      <Head>
-        <title>JMI CSE</title>
-      </Head>
+    <>
       <div className={classes.wrapper}>
         <Title className={classes.title}>
           Department of Computer Science
@@ -64,7 +59,7 @@ const Home: NextPage = () => {
         <div>Hello</div>
         <div>Hello</div>
       </TwoColumnGrid>
-    </PageWrapper>
+    </>
   )
 }
 

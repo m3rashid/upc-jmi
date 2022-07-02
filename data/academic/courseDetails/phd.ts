@@ -1,4 +1,4 @@
-import { IString } from './'
+import { IString } from 'data/academic/courseDetails'
 
 export interface IPhd {
   title: string
