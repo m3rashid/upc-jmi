@@ -1,14 +1,10 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
 import connectDb from 'models'
+import { requireAuth } from 'middlewares/auth'
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  try {
-    await connectDb()
-  } catch (err: any) {
-    console.log(err)
-    return res.status(500).json(err.message || 'Internal Server error')
-  }
+  await connectDb()
 }
 
-export default handler
+export default requireAuth(handler)

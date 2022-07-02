@@ -1,10 +1,10 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
 import connectDb from 'models'
-import { requireAuth } from 'middlewares/auth'
+import { defaultHandler } from 'middlewares/default'
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDb()
 }
 
-export default requireAuth(handler)
+export default defaultHandler(handler)
