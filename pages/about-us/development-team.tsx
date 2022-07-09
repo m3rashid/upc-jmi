@@ -83,7 +83,7 @@ const DevelopmentTeam: React.FC<IProps> = () => {
                   {person.contri.map((c, index) => (
                     <Text
                       component="span"
-                      sx={{ fontSize: '1.3rem' }}
+                      sx={{ fontSize: '1.5rem' }}
                       key={`${person.name}-${index}-${c}`}
                     >
                       {c}
@@ -91,40 +91,45 @@ const DevelopmentTeam: React.FC<IProps> = () => {
                   ))}
                 </Group>
               </Box>
-              <Group noWrap mt={20} sx={{ justifyContent: 'space-around' }}>
+              <Group
+                noWrap
+                mt={20}
+                spacing={8}
+                sx={{ justifyContent: 'center' }}
+              >
                 {person.github && (
                   <Anchor<'a'> href={person.github} target="_blank">
-                    <BrandGithub />
+                    <BrandGithub size={32} />
                   </Anchor>
                 )}
                 {person.linkedin && (
                   <Anchor<'a'> href={person.linkedin} target="_blank">
-                    <BrandLinkedin />
+                    <BrandLinkedin size={32} />
                   </Anchor>
                 )}
                 {person.twitter && (
                   <Anchor<'a'> href={person.twitter} target="_blank">
-                    <BrandTwitter />
+                    <BrandTwitter size={32} />
                   </Anchor>
                 )}
                 {person.instagram && (
                   <Anchor<'a'> href={person.instagram} target="_blank">
-                    <BrandInstagram />
+                    <BrandInstagram size={32} />
                   </Anchor>
                 )}
                 {person.portfolio && (
                   <Anchor<'a'> href={person.portfolio} target="_blank">
-                    <World />
+                    <World size={32} />
                   </Anchor>
                 )}
                 {person.email && (
                   <Anchor<'a'> href={'mailto:' + person.email}>
-                    <MailOpened />
+                    <MailOpened size={32} />
                   </Anchor>
                 )}
                 {person.phone && (
                   <Anchor<'a'> href={'tel:' + person.phone}>
-                    <Phone />
+                    <Phone size={32} />
                   </Anchor>
                 )}
               </Group>

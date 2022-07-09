@@ -7,17 +7,13 @@ const RichTextEditor = dynamic(() => import('@mantine/rte'), {
   loading: () => <Loader />,
 })
 
-interface IProps {
-  initialValue?: string
-}
+interface IProps extends React.ComponentProps<typeof RichTextEditor> {}
 
-const Editor: React.FC<IProps> = ({ initialValue }) => {
-  const [value, onChange] = React.useState(initialValue ?? '')
-
+const Editor: React.FC<IProps> = ({ ...props }) => {
   return (
     <RichTextEditor
-      value={value}
-      onChange={onChange}
+      {...props}
+      style={{ minHeight: 200 }}
       controls={[
         ['bold', 'italic', 'underline', 'link'],
         ['unorderedList', 'h1', 'h2', 'h3'],

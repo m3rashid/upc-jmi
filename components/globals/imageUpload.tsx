@@ -22,68 +22,42 @@ function getIconColor(status: DropzoneStatus, theme: MantineTheme) {
     : theme.colors.gray[7]
 }
 
-export const DropzoneChildren = ({
-  status,
-  title,
-  description,
-}: {
-  status: DropzoneStatus
-  title?: string
-  description?: string
-}) => {
+interface IProps {
+  onDrop: (files: File[]) => void
+  onError: (files: any) => void
+}
+
+const ImageUpload: React.FC<IProps> = ({ onDrop, onError }) => {
   const theme = useMantineTheme()
 
   return (
-    <Group
-      position="center"
-      spacing="xl"
-      style={{ minHeight: 220, pointerEvents: 'none' }}
-    >
-      <ImageUploadIcon
-        status={status}
-        style={{ color: getIconColor(status, theme) }}
-        size={80}
-      />
-
-      <div>
-        <Text size="xl" inline>
-          {title ?? 'Drag images here or click to select files'}
-        </Text>
-        <Text size="sm" color="dimmed" inline mt={7}>
-          {description ?? 'Attached file should not exceed 5mb'}
-        </Text>
-      </div>
-    </Group>
-  )
-}
-
-interface IProps {
-  title?: string
-  description?: string
-}
-
-const ImageUpload: React.FC<IProps> = ({ title, description }) => {
-  const onFileDrop = (files: File[]) => {
-    console.log('accepted files', files)
-  }
-
-  const onFileReject = (files: any) => {
-    console.log('rejected files', files)
-  }
-
-  return (
     <Dropzone
-      onDrop={onFileDrop}
-      onReject={onFileReject}
+      onDrop={onDrop}
+      onReject={onError}
       maxSize={3 * 1024 ** 2}
       accept={IMAGE_MIME_TYPE}
     >
       {(status) => (
-        <DropzoneChildren
-          status={status}
-          {...(title && { title })}
-          {...(description && { description })}
-        />
+        <Group
+          position="center"
+          spacing="xl"
+          style={{ minHeight: 220, pointerEvents: 'none' }}
+        >
+          <ImageUploadIcon
+            status={status}
+            style={{ color: getIconColor(status, theme) }}
+            size={80}
+          />
+
+          <div>
+            <Text size="xl" inline>
+              Drag images here or click to select file
+            </Text>
+            <Text size="sm" color="dimmed" inline mt={7}>
+              Attached file should not exceed 5mb
+            </Text>
+          </div>
+        </Group>
       )}
     </Dropzone>
   )

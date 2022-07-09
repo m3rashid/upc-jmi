@@ -8,7 +8,9 @@ import {
   PhoneCall,
   Mail,
   Location,
+  Code,
 } from 'tabler-icons-react'
+import Link from 'next/link'
 
 import { useStyles } from 'components/globals/footer/styles'
 
@@ -16,7 +18,7 @@ interface IProps {}
 
 const NavItem = ({ Icon, text }: { Icon: Icon; text: string | string[] }) => {
   return (
-    <Group>
+    <Group noWrap>
       <Icon size={16} />
       {typeof text === 'string' ? (
         <Text color="dimmed" size="sm">
@@ -58,36 +60,42 @@ const Footer: React.FC<IProps> = () => {
             Icon={Location}
             text="Department of Computer Engineering, Jamia Millia Islamia, New Delhi, Delhi-110025 India"
           />
-
           <br />
+          <Text color="dimmed" size="sm">
+            &copy; &nbsp;
+            {new Date().getFullYear()}, Department of Computer Engineering, JMI
+          </Text>
 
-          <Text color="dimmed" size="sm">
-            &copy;
-            {` ${new Date().getFullYear()} All rights reserved.`}
-          </Text>
-          <Text color="dimmed" size="sm">
-            University Placement Cell - Jamia Millia Islamia, Jamia Nagar,
-            Okhla, New Delhi
-          </Text>
+          <Link href="/about-us/development-team">
+            <Group
+              noWrap
+              spacing={5}
+              align="center"
+              mt={8}
+              sx={(theme) => ({
+                cursor: 'pointer',
+                color: theme.primaryColor,
+                fontWeight: 'bold',
+                '&:hover': { textDecoration: 'underline' },
+              })}
+            >
+              <Code size={24} />
+              <Text>Meet the Development Team</Text>
+            </Group>
+          </Link>
         </Box>
 
-        <Box>
-          <Group spacing={0} className={classes.social} position="right">
-            <ActionIcon size="lg">
-              <BrandTwitter size={18} />
-            </ActionIcon>
-            <ActionIcon size="lg">
-              <BrandYoutube size={18} />
-            </ActionIcon>
-            <ActionIcon size="lg">
-              <BrandInstagram size={18} />
-            </ActionIcon>
-          </Group>
-
-          <br />
-
-          <Text>Development Team</Text>
-        </Box>
+        <Group spacing={0} className={classes.social} position="right">
+          <ActionIcon size="lg">
+            <BrandTwitter size={18} />
+          </ActionIcon>
+          <ActionIcon size="lg">
+            <BrandYoutube size={18} />
+          </ActionIcon>
+          <ActionIcon size="lg">
+            <BrandInstagram size={18} />
+          </ActionIcon>
+        </Group>
       </Container>
     </footer>
   )

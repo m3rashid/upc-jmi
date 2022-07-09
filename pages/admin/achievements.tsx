@@ -28,7 +28,7 @@ const Achievements: React.FC<IProps> = () => {
       <br />
 
       <Card>
-        <Title order={2} className={globalClasses.title}>
+        <Title order={2} className={globalClasses.title} mb={30}>
           {state.charAt(0).toUpperCase() + state.slice(1)} Achievement
         </Title>
         {state === 'add' && <AddAchievement />}
