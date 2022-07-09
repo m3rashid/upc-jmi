@@ -1,5 +1,11 @@
 import React from 'react'
-import { RichTextEditor } from '@mantine/rte'
+import dynamic from 'next/dynamic'
+import { Loader } from '@mantine/core'
+
+const RichTextEditor = dynamic(() => import('@mantine/rte'), {
+  ssr: false,
+  loading: () => <Loader />,
+})
 
 interface IProps {
   initialValue?: string

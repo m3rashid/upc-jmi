@@ -65,11 +65,11 @@ const Home: NextPage = () => {
           </Text>
         </Container>
       </div>
-
+      {/* 
       <TwoColumnGrid>
         <div>Hello</div>
         <div>Hello</div>
-      </TwoColumnGrid>
+      </TwoColumnGrid> */}
 
       <Container sx={{ marginTop: 100 }}>
         <Title order={3} className={classes.title} sx={{ fontSize: '2rem' }}>
