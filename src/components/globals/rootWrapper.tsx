@@ -5,7 +5,6 @@ import {
   ColorScheme,
   MantineThemeOverride,
 } from '@mantine/core'
-import { RecoilRoot } from 'recoil'
 import { ModalsProvider } from '@mantine/modals'
 import { NotificationsProvider } from '@mantine/notifications'
 
@@ -38,34 +37,32 @@ const RootWrapper: React.FC<IProps> = ({ children }) => {
   }
 
   return (
-    <RecoilRoot>
-      <ColorSchemeProvider
-        colorScheme={colorScheme}
-        toggleColorScheme={toggleColorScheme}
+    <ColorSchemeProvider
+      colorScheme={colorScheme}
+      toggleColorScheme={toggleColorScheme}
+    >
+      <MantineProvider
+        theme={{
+          ...theme,
+          colors: { ...theme.colors, brand: ['#046b09'] },
+          fontFamily: 'Quicksand, sans-serif',
+        }}
+        withGlobalStyles
+        withNormalizeCSS
       >
-        <MantineProvider
-          theme={{
-            ...theme,
-            colors: { ...theme.colors, brand: ['#046b09'] },
-            fontFamily: 'Quicksand, sans-serif',
-          }}
-          withGlobalStyles
-          withNormalizeCSS
-        >
-          <NotificationsProvider limit={5} position="bottom-right">
-            <ModalsProvider>
-              <TopHeader
-                colorScheme={colorScheme}
-                toggleColorScheme={toggleColorScheme}
-              />
-              {children}
-              <Footer />
-              <ScrollTopTop />
-            </ModalsProvider>
-          </NotificationsProvider>
-        </MantineProvider>
-      </ColorSchemeProvider>
-    </RecoilRoot>
+        <NotificationsProvider limit={5} position="bottom-right">
+          <ModalsProvider>
+            <TopHeader
+              colorScheme={colorScheme}
+              toggleColorScheme={toggleColorScheme}
+            />
+            {children}
+            <Footer />
+            <ScrollTopTop />
+          </ModalsProvider>
+        </NotificationsProvider>
+      </MantineProvider>
+    </ColorSchemeProvider>
   )
 }
 

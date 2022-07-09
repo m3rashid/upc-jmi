@@ -1,0 +1,96 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Achievement {
+  id          Int      @id @default(autoincrement())
+  title       String
+  body        String
+  image       String
+  lastUpdated DateTime @default(now())
+}
+
+model Company {
+  id          Int      @id @default(autoincrement())
+  name        String
+  lastUpdated DateTime @default(now())
+}
+
+model Event {
+  id          Int      @id @default(autoincrement())
+  title       String
+  image       String
+  tagline     String?
+  shortIntro  String?
+  description String?
+  venue       String
+  dateTime    DateTime
+  lastUpdated DateTime @default(now())
+}
+
+model Placement {
+  id Int @id @default(autoincrement())
+}
+
+model Project {
+  id Int @id @default(autoincrement())
+}
+
+model Research {
+  id Int @id @default(autoincrement())
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id          Int      @id @default(autoincrement())
+  name        String
+  email       String
+  password    String
+  role        Role     @default(USER)
+  lastUpdated DateTime @default(now())
+}
+
+model BtechStudent {
+  id          Int      @id @default(autoincrement())
+  name        String
+  rollNo      String
+  mailId      String
+  githubUrl   String?
+  linkedinUrl String?
+  websiteLink String?
+  lastUpdated DateTime @default(now())
+}
+
+model MtechStudent {
+  id          Int      @id @default(autoincrement())
+  name        String
+  rollNo      String
+  mailId      String
+  githubUrl   String?
+  linkedinUrl String?
+  websiteLink String?
+  lastUpdated DateTime @default(now())
+}
+
+model IPhdStudent {
+  id          Int      @id @default(autoincrement())
+  name        String
+  rollNo      String
+  mailId      String
+  githubUrl   String?
+  linkedinUrl String?
+  websiteLink String?
+  supervisor  String?
+  topic       String?
+  orcId       String?
+  lastUpdated DateTime @default(now())
+}

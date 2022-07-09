@@ -1,6 +1,5 @@
 import bcrypt from 'bcrypt'
 import NextAuth from 'next-auth'
-import { ObjectId } from 'mongoose'
 import CredentialProvider from 'next-auth/providers/credentials'
 
 import connectDb from 'server/models'
