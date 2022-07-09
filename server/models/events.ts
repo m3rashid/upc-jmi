@@ -1,9 +1,6 @@
 import mongoose from 'mongoose'
 
-export interface IImage {
-  url: string
-  public_id: string
-}
+import { IImage } from './achievements'
 
 export interface IEvent {
   title: string
@@ -22,8 +19,8 @@ const eventSchema = new mongoose.Schema<IEvent>(
       required: true,
     },
     image: {
-      url: String,
-      public_id: String,
+      url: { type: String },
+      public_id: { type: String },
     },
     tagline: {
       type: String,

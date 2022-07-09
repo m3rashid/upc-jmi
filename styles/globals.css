@@ -15,11 +15,11 @@ body {
   border-radius: 5px;
 }
 *::-webkit-scrollbar-thumb {
-  background: linear-gradient(#002002, #046b09);
+  background: linear-gradient(#046b09, #002002);
   border-radius: 5px;
 }
 *::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(#046b09, #002002);
+  background: linear-gradient(#002002, #046b09);
 }
 *::-webkit-scrollbar {
   width: 10px;

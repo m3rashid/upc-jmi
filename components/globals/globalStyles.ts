@@ -21,6 +21,10 @@ export const useGlobalStyles = createStyles((theme) => ({
     height: 'min-content',
   },
 
+  title: {
+    fontFamily: 'Quicksand, sans-serif',
+  },
+
   link: {
     display: 'block',
     lineHeight: 1,

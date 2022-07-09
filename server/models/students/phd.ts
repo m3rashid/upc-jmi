@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import { IMtechStudent } from 'models/students/mtech'
+import { IMtechStudent } from 'server/models/students/mtech'
 
 export interface IPhdStudent extends IMtechStudent {
   supervisor: string

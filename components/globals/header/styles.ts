@@ -42,8 +42,9 @@ export const useStyles = createStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     gap: '10px',
+    padding: '10px 0',
     flexWrap: 'wrap',
-    [theme.fn.largerThan('sm')]: {
+    [theme.fn.largerThan('md')]: {
       display: 'none',
     },
   },
@@ -56,13 +57,13 @@ export const useStyles = createStyles((theme) => ({
   },
 
   links: {
-    [theme.fn.smallerThan('sm')]: {
+    [theme.fn.smallerThan('md')]: {
       display: 'none',
     },
   },
 
   burger: {
-    [theme.fn.largerThan('sm')]: {
+    [theme.fn.largerThan('md')]: {
       display: 'none',
     },
   },

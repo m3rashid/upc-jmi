@@ -1,6 +1,7 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 import { Text, Menu } from '@mantine/core'
+import { ChevronDown } from 'tabler-icons-react'
 
 import { Map } from 'components/globals/header/data'
 import { useGlobalStyles } from 'components/globals/globalStyles'
@@ -9,9 +10,15 @@ interface IProps {
   innerData: Map
   title: String
   innerRoute: String
+  Additional?: React.ReactNode
 }
 
-const DropDown: React.FC<IProps> = ({ innerData, title, innerRoute }) => {
+const DropDown: React.FC<IProps> = ({
+  innerData,
+  title,
+  innerRoute,
+  Additional,
+}) => {
   const [open, setOpen] = React.useState<boolean>(false)
   const { classes, cx } = useGlobalStyles()
   const { pathname, push } = useRouter()
@@ -20,14 +27,24 @@ const DropDown: React.FC<IProps> = ({ innerData, title, innerRoute }) => {
   return (
     <Menu
       size={260}
+      trigger="hover"
+      delay={0}
+      gutter={1}
+      transitionDuration={0}
       control={
         <Text
           className={cx(classes.link, {
             [classes.linkActive]: main === innerRoute,
           })}
-          onClick={() => setOpen((o) => !o)}
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+          onClick={(e: any) => e.preventDefault()}
         >
-          {title}
+          {title}&nbsp;
+          <ChevronDown size={16} />
         </Text>
       }
     >
@@ -35,7 +52,8 @@ const DropDown: React.FC<IProps> = ({ innerData, title, innerRoute }) => {
         return (
           <Menu.Item
             my={5}
-            px={10}
+            px={5}
+            icon={<action.Icon size={14} />}
             key={`${action.name}-${index}`}
             className={classes.link}
             onClick={(e: any) => {
@@ -47,6 +65,7 @@ const DropDown: React.FC<IProps> = ({ innerData, title, innerRoute }) => {
           </Menu.Item>
         )
       })}
+      {Additional}
     </Menu>
   )
 }

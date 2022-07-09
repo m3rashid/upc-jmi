@@ -1,11 +1,14 @@
 import mongoose from 'mongoose'
 
-/**
- * InComplete model
- */
+export interface IImage {
+  url: string
+  public_id: string
+}
+
 export interface IAchievement {
   title: string
   body: string
+  image?: IImage
 }
 
 const achievementSchema = new mongoose.Schema<IAchievement>(
@@ -19,6 +22,10 @@ const achievementSchema = new mongoose.Schema<IAchievement>(
       type: String,
       required: true,
       trim: true,
+    },
+    image: {
+      url: { type: String },
+      public_id: { type: String },
     },
   },
   { timestamps: true }

@@ -49,16 +49,28 @@ const Login: React.FC<IProps> = () => {
         })
         return
       }
-      await signIn('credentials', {
+      const signInRes = await signIn('credentials', {
         ...values,
         callbackUrl: '/',
         redirect: false,
       })
-      updateSuccessNotif({})
+      if (!signInRes?.ok) {
+        throw new Error('Sign in failed')
+      }
+      updateSuccessNotif({
+        successMsg: {
+          title: 'Login Success',
+          message: 'Your login was successful',
+        },
+      })
       setLoading(false)
-    } catch (err) {
-      console.log(err)
-      updateFailureNotif({})
+    } catch (err: any) {
+      updateFailureNotif({
+        errorMsg: {
+          title: err.message || 'Internal Server error',
+          message: err.message || 'Could not get response from server',
+        },
+      })
       setLoading(false)
     }
   }

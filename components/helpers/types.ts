@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongoose'
 
-import { ROLE } from 'models/user'
+import { ROLE } from 'server/models/user'
 
 export interface IUser {
   id: ObjectId

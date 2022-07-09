@@ -11,13 +11,18 @@ import {
 } from '@mantine/core'
 import React from 'react'
 import { useRouter } from 'next/router'
-import { Sun, Moon } from 'tabler-icons-react'
 import { useBooleanToggle } from '@mantine/hooks'
 
 import DropDown from 'components/globals/header/dropDown'
 import { useGlobalStyles } from 'components/globals/globalStyles'
 import { useStyles, HEADER_HEIGHT } from 'components/globals/header/styles'
-import { aboutUs, academic, research } from 'components/globals/header/data'
+import {
+  aboutUs,
+  academic,
+  adminLoggedIn,
+  research,
+} from 'components/globals/header/data'
+import UserDropDown from './userDropDown'
 
 const AboutUsDropdown = () => (
   <DropDown innerData={aboutUs} title="About Us" innerRoute="about-us" />
@@ -71,16 +76,7 @@ const TopHeader: React.FC<IProps> = ({ colorScheme, toggleColorScheme }) => {
   const { pathname, push } = useRouter()
   const { classes } = useStyles()
 
-  const Icon = colorScheme === 'dark' ? Sun : Moon
   const imgLogo = '/images/logo_green.png'
-
-  const ThemeChanger = () => (
-    <Group position="center" my="xl">
-      <Center className={classes.iconWrapper} aria-label="Toggle theme">
-        <Icon onClick={() => toggleColorScheme()} />
-      </Center>
-    </Group>
-  )
 
   return (
     <Header height={HEADER_HEIGHT} className={classes.root}>
@@ -105,7 +101,7 @@ const TopHeader: React.FC<IProps> = ({ colorScheme, toggleColorScheme }) => {
           <AboutUsDropdown />
           <AcademicDropdown />
           <ResearchDropdown />
-          <ThemeChanger />
+          <UserDropDown {...{ colorScheme, toggleColorScheme }} />
         </Group>
 
         <Burger
@@ -133,7 +129,7 @@ const TopHeader: React.FC<IProps> = ({ colorScheme, toggleColorScheme }) => {
               <AboutUsDropdown />
               <AcademicDropdown />
               <ResearchDropdown />
-              <ThemeChanger />
+              <UserDropDown {...{ colorScheme, toggleColorScheme }} />
             </Paper>
           )}
         </Transition>
