@@ -21,6 +21,7 @@
     "@mantine/next": "^4.2.10",
     "@mantine/notifications": "^4.2.10",
     "@mantine/rte": "^4.2.12",
+    "@prisma/client": "^4.0.0",
     "@trpc/client": "^9.25.3",
     "@trpc/next": "^9.25.3",
     "@trpc/react": "^9.25.3",
