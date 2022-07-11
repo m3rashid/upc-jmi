@@ -1,9 +1,7 @@
-import { ObjectId } from 'mongoose'
-
-import { ROLE } from 'server/models/user'
+export type ROLE = 'USER' | 'ADMIN'
 
 export interface IUser {
-  id: ObjectId
+  id: number
   email: string
   name: string
   role: ROLE

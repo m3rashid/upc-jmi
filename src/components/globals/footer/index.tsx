@@ -21,18 +21,30 @@ const NavItem = ({ Icon, text }: { Icon: Icon; text: string | string[] }) => {
     <Group noWrap>
       <Icon size={16} />
       {typeof text === 'string' ? (
-        <Text color="dimmed" size="sm">
+        <Text
+          color="dimmed"
+          size="sm"
+          sx={{ wordWrap: 'break-word', whiteSpace: 'break-spaces' }}
+        >
           {text}
         </Text>
       ) : (
-        text.map((t) => {
-          const [_, label] = t.split(':')
-          return (
-            <Anchor component="a" href={t} key={label} color="dimmed" size="sm">
-              {label},
-            </Anchor>
-          )
-        })
+        <Box component="span">
+          {text.map((t) => {
+            const [_, label] = t.split(':')
+            return (
+              <Anchor
+                component="a"
+                href={t}
+                key={label}
+                color="dimmed"
+                size="sm"
+              >
+                {label}, &nbsp;
+              </Anchor>
+            )
+          })}
+        </Box>
       )}
     </Group>
   )

@@ -6,7 +6,6 @@ import {
   Paper,
   Transition,
   Text,
-  Center,
   Image,
 } from '@mantine/core'
 import React from 'react'
@@ -24,15 +23,32 @@ import {
 } from 'components/globals/header/data'
 import UserDropDown from './userDropDown'
 
-const AboutUsDropdown = () => (
-  <DropDown innerData={aboutUs} title="About Us" innerRoute="about-us" />
+interface IDropdowns {
+  toggleOpened: (val: boolean) => void
+}
+const AboutUsDropdown = ({ toggleOpened }: IDropdowns) => (
+  <DropDown
+    toggleOpened={toggleOpened}
+    innerData={aboutUs}
+    title="About Us"
+    innerRoute="about-us"
+  />
 )
-const AcademicDropdown = () => (
-  <DropDown innerData={academic} title="Academic" innerRoute="academic" />
+const AcademicDropdown = ({ toggleOpened }: IDropdowns) => (
+  <DropDown
+    toggleOpened={toggleOpened}
+    innerData={academic}
+    title="Academic"
+    innerRoute="academic"
+  />
 )
-
-const ResearchDropdown = () => (
-  <DropDown innerData={research} title="Research" innerRoute="research" />
+const ResearchDropdown = ({ toggleOpened }: IDropdowns) => (
+  <DropDown
+    toggleOpened={toggleOpened}
+    innerData={research}
+    title="Research"
+    innerRoute="research"
+  />
 )
 
 interface IProps {
@@ -98,10 +114,13 @@ const TopHeader: React.FC<IProps> = ({ colorScheme, toggleColorScheme }) => {
             isActive={pathname === '/placement' ? true : false}
             toggleOpened={toggleOpened}
           />
-          <AboutUsDropdown />
-          <AcademicDropdown />
-          <ResearchDropdown />
-          <UserDropDown {...{ colorScheme, toggleColorScheme }} />
+          <AboutUsDropdown toggleOpened={toggleOpened} />
+          <AcademicDropdown toggleOpened={toggleOpened} />
+          <ResearchDropdown toggleOpened={toggleOpened} />
+          <UserDropDown
+            toggleOpened={toggleOpened}
+            {...{ colorScheme, toggleColorScheme }}
+          />
         </Group>
 
         <Burger
@@ -126,10 +145,13 @@ const TopHeader: React.FC<IProps> = ({ colorScheme, toggleColorScheme }) => {
                 isActive={pathname === '/placement' ? true : false}
                 toggleOpened={toggleOpened}
               />
-              <AboutUsDropdown />
-              <AcademicDropdown />
-              <ResearchDropdown />
-              <UserDropDown {...{ colorScheme, toggleColorScheme }} />
+              <AboutUsDropdown toggleOpened={toggleOpened} />
+              <AcademicDropdown toggleOpened={toggleOpened} />
+              <ResearchDropdown toggleOpened={toggleOpened} />
+              <UserDropDown
+                toggleOpened={toggleOpened}
+                {...{ colorScheme, toggleColorScheme }}
+              />
             </Paper>
           )}
         </Transition>

@@ -23,10 +23,14 @@ class MyDocument extends Document {
           <link rel="icon" href="/favicon.ico" />
           <link
             rel="apple-touch-icon"
-            href="/favicon.ico"
+            href="/images/favicon.ico"
             type="image/x-icon"
           />
-          <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+          <link
+            rel="shortcut icon"
+            href="/images/favicon.ico"
+            type="image/x-icon"
+          />
           <meta name="image" content="https://jmicse.vercel.app/favicon.ico" />
           <meta
             name="og:image"

@@ -2,11 +2,8 @@ import bcrypt from 'bcrypt'
 import NextAuth from 'next-auth'
 import CredentialProvider from 'next-auth/providers/credentials'
 
-import connectDb from 'server/models'
-import { ROLE, User } from 'server/models/user'
+import { prisma } from 'utils/prisma'
 import { IUser } from 'components/helpers/types'
-
-connectDb()
 
 export default NextAuth({
   providers: [
@@ -18,7 +15,10 @@ export default NextAuth({
       },
       authorize: async (credentials) => {
         if (!credentials) return null
-        const user = await User.findOne({ email: credentials.email })
+
+        const user = await prisma.user.findUnique({
+          where: { email: credentials.email },
+        })
         if (!user) return null
 
         const match = await bcrypt.compare(credentials.password, user.password)
@@ -31,12 +31,12 @@ export default NextAuth({
     jwt: ({ token, user }) => {
       if (user) {
         const data: IUser = {
-          id: user._id as ObjectId,
+          id: parseInt(user.id),
           name: user.name as string,
           email: user.email as string,
-          role: user.role as ROLE,
+          role: user.role as IUser['role'],
         }
-        token.id = user._id
+        token.id = user.id
         token.sub = JSON.stringify(data)
       }
       return token

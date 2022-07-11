@@ -12,9 +12,14 @@ import { useRouter } from 'next/router'
 interface IProps {
   colorScheme: any
   toggleColorScheme: () => void
+  toggleOpened: (val: boolean) => void
 }
 
-const UserDropDown: React.FC<IProps> = ({ colorScheme, toggleColorScheme }) => {
+const UserDropDown: React.FC<IProps> = ({
+  colorScheme,
+  toggleColorScheme,
+  toggleOpened,
+}) => {
   const { classes } = useStyles()
   const Icon = colorScheme === 'dark' ? Sun : Moon
   const router = useRouter()
@@ -44,6 +49,7 @@ const UserDropDown: React.FC<IProps> = ({ colorScheme, toggleColorScheme }) => {
 
   return (
     <DropDown
+      toggleOpened={toggleOpened}
       innerData={adminLoggedIn}
       title="Admin"
       innerRoute="admin"

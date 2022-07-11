@@ -10,6 +10,7 @@ interface IProps {
   innerData: Map
   title: String
   innerRoute: String
+  toggleOpened: (val: boolean) => void
   Additional?: React.ReactNode
 }
 
@@ -18,6 +19,7 @@ const DropDown: React.FC<IProps> = ({
   title,
   innerRoute,
   Additional,
+  toggleOpened,
 }) => {
   const [open, setOpen] = React.useState<boolean>(false)
   const { classes, cx } = useGlobalStyles()
@@ -59,6 +61,7 @@ const DropDown: React.FC<IProps> = ({
             onClick={(e: any) => {
               push(action.endpoint)
               setOpen(false)
+              toggleOpened(false)
             }}
           >
             {action.label}
