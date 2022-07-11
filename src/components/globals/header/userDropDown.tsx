@@ -1,13 +1,14 @@
 import React from 'react'
+import { useRouter } from 'next/router'
 import { useSession, signOut } from 'next-auth/react'
-import { Center, Divider, Group, Menu } from '@mantine/core'
-import { Sun, Moon, Logout } from 'tabler-icons-react'
+import { showNotification } from '@mantine/notifications'
+import { Center, Divider, Group, Menu, Text } from '@mantine/core'
+import { Sun, Moon, Logout, Login } from 'tabler-icons-react'
 
 import DropDown from 'components/globals/header/dropDown'
 import { useStyles } from 'components/globals/header/styles'
 import { adminLoggedIn } from 'components/globals/header/data'
-import { showNotification } from '@mantine/notifications'
-import { useRouter } from 'next/router'
+import { useGlobalStyles } from 'components/globals/globalStyles'
 
 interface IProps {
   colorScheme: any
@@ -23,6 +24,8 @@ const UserDropDown: React.FC<IProps> = ({
   const { classes } = useStyles()
   const Icon = colorScheme === 'dark' ? Sun : Moon
   const router = useRouter()
+  const { classes: globalClasses } = useGlobalStyles()
+  const { data: session } = useSession()
 
   const handleLogout = () => {
     signOut({ redirect: false })
@@ -30,60 +33,72 @@ const UserDropDown: React.FC<IProps> = ({
       title: 'Logged out Successfully',
       message: 'You have been logged out',
     })
+    toggleOpened(false)
     router.replace('/')
-  }
-
-  const ThemeChanger = ({ showtitle }: { showtitle: boolean }) => (
-    <Group position="left" my="sm" onClick={() => toggleColorScheme()}>
-      <Center className={classes.iconWrapper} aria-label="Toggle theme">
-        <Icon />
-      </Center>
-      {showtitle && <span>Toggle Theme</span>}
-    </Group>
-  )
-
-  const { data: session } = useSession()
-  if (!session) {
-    return <ThemeChanger showtitle={false} />
   }
 
   return (
     <DropDown
       toggleOpened={toggleOpened}
-      innerData={adminLoggedIn}
-      title="Admin"
+      innerData={session?.user.role === 'ADMIN' ? adminLoggedIn : {}}
+      title={session ? session.user.name || 'Admin' : 'Actions'}
       innerRoute="admin"
       Additional={
         <>
+          {session ? (
+            <>
+              <Divider />
+              <Menu.Item
+                my={5}
+                px={5}
+                icon={<Logout size={14} />}
+                className={globalClasses.link}
+                onClick={handleLogout}
+              >
+                Logout
+              </Menu.Item>
+            </>
+          ) : (
+            <>
+              <Menu.Item
+                my={3}
+                px={5}
+                icon={<Login size={14} />}
+                className={globalClasses.link}
+                onClick={() => {
+                  toggleOpened(false)
+                  router.push('/auth/login')
+                }}
+              >
+                Login
+              </Menu.Item>
+              <Menu.Item
+                px={5}
+                my={5}
+                icon={<Login size={14} />}
+                className={globalClasses.link}
+                onClick={() => {
+                  toggleOpened(false)
+                  router.push('/auth/register')
+                }}
+              >
+                Create Account
+              </Menu.Item>
+            </>
+          )}
           <Divider />
-          <Menu.Item
-            my={5}
-            px={5}
-            icon={<Logout size={14} />}
-            className={classes.link}
-            onClick={handleLogout}
-          >
-            Logout
-          </Menu.Item>
-          <Divider />
-          <Group
-            sx={(theme) => ({
-              '&:hover': {
-                cursor: 'pointer',
-                backgroundColor:
-                  theme.colorScheme === 'dark'
-                    ? theme.fn.rgba(theme.colors[theme.primaryColor][9], 0.25)
-                    : theme.colors[theme.primaryColor][0],
-                color:
-                  theme.colors[theme.primaryColor][
-                    theme.colorScheme === 'dark' ? 3 : 7
-                  ],
-                fontWeight: 500,
-                borderRadius: theme.radius.sm,
-              },
-            })}
-          >
-            <ThemeChanger showtitle={true} />
+          <Group className={globalClasses.link}>
+            <Group
+              onClick={() => {
+                toggleOpened(false)
+                toggleColorScheme()
+              }}
+            >
+              <Center className={classes.iconWrapper} aria-label="Toggle theme">
+                <Icon />
+              </Center>
+              <Text>Toggle Theme</Text>
+            </Group>
           </Group>
         </>
       }

@@ -11,18 +11,21 @@ import {
 } from '@mantine/core'
 import React from 'react'
 import { useRouter } from 'next/router'
-import { useSession, signIn } from 'next-auth/react'
+import { useSession } from 'next-auth/react'
 
-import useHttp from 'components/helpers/useHttp'
+import { trpc } from 'utils/trpc'
 import { useNotification } from 'components/helpers/useNotification'
+import { ICreateUser } from 'server/schema/user'
 
 interface IProps {}
 
 const Register: React.FC<IProps> = () => {
   const router = useRouter()
   const { data: session } = useSession()
-  const { loading, request } = useHttp('login')
-  const { updateFailureNotif } = useNotification({ id: 'register' })
+  const [loading, setLoading] = React.useState(false)
+  const { updateFailureNotif, updateSuccessNotif } = useNotification({
+    id: 'register',
+  })
   const [admin, setAdmin] = React.useState(false)
   const nameRef = React.useRef<HTMLInputElement>(null)
   const emailRef = React.useRef<HTMLInputElement>(null)
@@ -37,62 +40,80 @@ const Register: React.FC<IProps> = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session])
 
+  const handleGoToLogin = () => {
+    router.replace('/auth/login')
+  }
+
+  const { mutate, error } = trpc.useMutation('users.register', {
+    onSuccess: () => {
+      updateSuccessNotif({
+        successMsg: {
+          title: 'Registration Successful',
+          message: 'Successfully added the user',
+        },
+      })
+      setTimeout(handleGoToLogin, 2000)
+    },
+  })
+
   const handleRegister = async () => {
+    setLoading(true)
     const values = {
+      name: nameRef.current?.value,
       email: emailRef.current?.value,
       password: passwordRef.current?.value,
       confirmPassword: confirmPasswordRef.current?.value,
-      name: nameRef.current?.value,
       admin: admin,
       adminUid: adminUidRef.current?.value,
     }
-    if (values.admin && !values.adminUid) {
-      updateFailureNotif({
-        errorMsg: {
-          title: 'Invalid Data',
-          message: 'You need admin UID to register as admin',
-        },
-      })
-      return
-    }
-    if (
-      !values.email ||
-      !values.password ||
-      !values.confirmPassword ||
-      !values.name
-    ) {
-      updateFailureNotif({
-        errorMsg: {
-          title: 'Invalid Data',
-          message: 'Please fill in all fields',
-        },
-      })
-      return
-    }
-    if (values.password !== values.confirmPassword) {
-      updateFailureNotif({
-        errorMsg: {
-          title: 'Invalid Data',
-          message: 'Passwords do not match',
-        },
-      })
-      return
-    }
-    const res = await request({
-      endpoint: '/register',
-      body: values,
-    })
-    if (!res) return
-    await signIn('credentials', {
-      email: values.email,
-      password: values.password,
-      callbackUrl: '/',
-      redirect: false,
-    })
-  }
+    try {
+      if (values.admin && !values.adminUid) {
+        throw new Error(
+          JSON.stringify({
+            title: 'Invalid Data',
+            message: 'No admin UID provided',
+          })
+        )
+      }
+      if (
+        !values.email ||
+        !values.password ||
+        !values.confirmPassword ||
+        !values.name
+      ) {
+        throw new Error(
+          JSON.stringify({
+            title: 'Invalid Data',
+            message: 'Please fill the required fields',
+          })
+        )
+      }
+      if (values.password !== values.confirmPassword) {
+        throw new Error(
+          JSON.stringify({
+            title: 'Invalid Data',
+            message: 'Passwords do not match',
+          })
+        )
+      }
 
-  const handleGoToLogin = () => {
-    router.replace('/auth/login')
+      console.log(values)
+      mutate(values as ICreateUser)
+      setLoading(false)
+      if (error) {
+        throw new Error(
+          JSON.stringify({ title: 'Error', message: 'Registration failed' })
+        )
+      }
+    } catch (err: any) {
+      setLoading(false)
+      updateFailureNotif({
+        errorMsg: JSON.parse(err.message) || {
+          title: 'Error',
+          message: 'Error in register',
+        },
+      })
+    }
   }
 
   return (
@@ -161,7 +182,7 @@ const Register: React.FC<IProps> = () => {
           mt="md"
           label="Are you an admin"
           checked={admin}
-          onClick={() => setAdmin(!admin)}
+          onChange={() => setAdmin(!admin)}
         />
 
         <Button fullWidth mt="xl" onClick={handleRegister} loading={loading}>

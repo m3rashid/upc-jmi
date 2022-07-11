@@ -1,7 +1,6 @@
 import React from 'react'
 import { Box, Button, Image, SimpleGrid, Text, TextInput } from '@mantine/core'
 import Editor from 'components/globals/rte'
-import ImageUpload from 'components/globals/imageUpload'
 import { Badge, CircleX, Cut, PlaylistAdd } from 'tabler-icons-react'
 
 interface IProps {
@@ -60,7 +59,8 @@ export const AddOrEditAchievement: React.FC<IProps> = ({
           <Text sx={{ marginBottom: -15 }} size="sm">
             Add achievement image
           </Text>
-          <ImageUpload onDrop={handleOnChange} onError={handleOnError} />
+          {/* use an input for image link */}
+          {/* <ImageUpload onDrop={handleOnChange} onError={handleOnError} /> */}
         </>
       )}
 

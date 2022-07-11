@@ -8,6 +8,19 @@ import {
 } from 'server/schema/events'
 
 export const eventRouter = createRouter()
+  .query('get-all-events', {
+    async resolve({ ctx, input }) {
+      try {
+        const events = await (await ctx).prisma.event.findMany()
+        return events
+      } catch (err: any) {
+        throw new trpc.TRPCError({
+          code: 'INTERNAL_SERVER_ERROR',
+          message: err.message || 'Something went wrong',
+        })
+      }
+    },
+  })
   .mutation('create-event', {
     input: createEventSchema,
     async resolve({ ctx, input }) {
@@ -36,10 +49,10 @@ export const eventRouter = createRouter()
           },
         })
         return event
-      } catch (err) {
+      } catch (err: any) {
         throw new trpc.TRPCError({
           code: 'INTERNAL_SERVER_ERROR',
-          message: 'Something went wrong',
+          message: err.message || 'Something went wrong',
         })
       }
     },
@@ -73,10 +86,10 @@ export const eventRouter = createRouter()
           },
         })
         return event
-      } catch (err) {
+      } catch (err: any) {
         throw new trpc.TRPCError({
           code: 'INTERNAL_SERVER_ERROR',
-          message: 'Something went wrong',
+          message: err.message || 'Something went wrong',
         })
       }
     },
@@ -88,23 +101,10 @@ export const eventRouter = createRouter()
         const { id } = input
         await (await ctx).prisma.event.delete({ where: { id } })
         return 'Event deleted'
-      } catch (err) {
+      } catch (err: any) {
         throw new trpc.TRPCError({
           code: 'INTERNAL_SERVER_ERROR',
-          message: 'Something went wrong',
-        })
-      }
-    },
-  })
-  .mutation('get-all-events', {
-    async resolve({ ctx, input }) {
-      try {
-        const events = await (await ctx).prisma.event.findMany()
-        return events
-      } catch (err) {
-        throw new trpc.TRPCError({
-          code: 'INTERNAL_SERVER_ERROR',
-          message: 'Something went wrong',
+          message: err.message || 'Something went wrong',
         })
       }
     },
