@@ -6,7 +6,6 @@ import {
   MantineThemeOverride,
 } from '@mantine/core'
 import { ModalsProvider } from '@mantine/modals'
-import { NotificationsProvider } from '@mantine/notifications'
 
 import Footer from 'components/globals/footer'
 import TopHeader from 'components/globals/header'
@@ -20,15 +19,26 @@ const RootWrapper: React.FC<IProps> = ({ children }) => {
   const [colorScheme, setColorScheme] = React.useState<ColorScheme>('dark')
 
   const toggleColorScheme = (value?: ColorScheme) => {
-    setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'))
-    localStorage.setItem('theme', colorScheme === 'dark' ? 'light' : 'dark')
+    if (value === 'light' || value === 'dark') {
+      setColorScheme(value)
+      localStorage.setItem('theme', value)
+    } else {
+      setColorScheme(colorScheme === 'dark' ? 'light' : 'dark')
+      localStorage.setItem('theme', colorScheme === 'dark' ? 'light' : 'dark')
+    }
   }
 
   React.useEffect(() => {
     const localTheme = window.localStorage.getItem('theme')
-    if (localTheme) {
-      setColorScheme(localTheme as ColorScheme)
+    if (localTheme === 'light' || localTheme === 'dark') {
+      toggleColorScheme(localTheme as ColorScheme)
+    } else {
+      const darkTheme = window.matchMedia(
+        '(prefers-color-scheme: dark)'
+      ).matches
+      toggleColorScheme(darkTheme ? 'dark' : 'light')
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const theme: MantineThemeOverride = {
@@ -50,17 +60,15 @@ const RootWrapper: React.FC<IProps> = ({ children }) => {
         withGlobalStyles
         withNormalizeCSS
       >
-        <NotificationsProvider limit={5} position="bottom-right">
-          <ModalsProvider>
-            <TopHeader
-              colorScheme={colorScheme}
-              toggleColorScheme={toggleColorScheme}
-            />
-            {children}
-            <Footer />
-            <ScrollTopTop />
-          </ModalsProvider>
-        </NotificationsProvider>
+        <ModalsProvider>
+          <TopHeader
+            colorScheme={colorScheme}
+            toggleColorScheme={toggleColorScheme}
+          />
+          {children}
+          <Footer />
+          <ScrollTopTop />
+        </ModalsProvider>
       </MantineProvider>
     </ColorSchemeProvider>
   )

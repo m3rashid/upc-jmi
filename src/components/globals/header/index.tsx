@@ -7,6 +7,7 @@ import {
   Transition,
   Text,
   Image,
+  Center,
 } from '@mantine/core'
 import React from 'react'
 import { useRouter } from 'next/router'
@@ -21,7 +22,7 @@ import {
   adminLoggedIn,
   research,
 } from 'components/globals/header/data'
-import UserDropDown from './userDropDown'
+import { Moon, Sun } from 'tabler-icons-react'
 
 interface IDropdowns {
   toggleOpened: (val: boolean) => void
@@ -93,6 +94,20 @@ const TopHeader: React.FC<IProps> = ({ colorScheme, toggleColorScheme }) => {
   const { classes } = useStyles()
 
   const imgLogo = '/images/logo_green.png'
+  const Icon = colorScheme === 'dark' ? Sun : Moon
+
+  const ThemeChange = () => (
+    <Center
+      className={classes.iconWrapper}
+      aria-label="Toggle theme"
+      onClick={() => {
+        toggleOpened(false)
+        toggleColorScheme()
+      }}
+    >
+      <Icon />
+    </Center>
+  )
 
   return (
     <Header height={HEADER_HEIGHT} className={classes.root}>
@@ -117,10 +132,7 @@ const TopHeader: React.FC<IProps> = ({ colorScheme, toggleColorScheme }) => {
           <AboutUsDropdown toggleOpened={toggleOpened} />
           <AcademicDropdown toggleOpened={toggleOpened} />
           <ResearchDropdown toggleOpened={toggleOpened} />
-          <UserDropDown
-            toggleOpened={toggleOpened}
-            {...{ colorScheme, toggleColorScheme }}
-          />
+          <ThemeChange />
         </Group>
 
         <Burger
@@ -148,10 +160,7 @@ const TopHeader: React.FC<IProps> = ({ colorScheme, toggleColorScheme }) => {
               <AboutUsDropdown toggleOpened={toggleOpened} />
               <AcademicDropdown toggleOpened={toggleOpened} />
               <ResearchDropdown toggleOpened={toggleOpened} />
-              <UserDropDown
-                toggleOpened={toggleOpened}
-                {...{ colorScheme, toggleColorScheme }}
-              />
+              <ThemeChange />
             </Paper>
           )}
         </Transition>
